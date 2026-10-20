@@ -23,14 +23,14 @@ async function main() {
     update: {},
     create: {
       id: 'global_config',
-      activeTheme: 'OBSIDIAN_GOLD',
       companyName: 'MENEN Engineering PLC',
       legalCategory: 'Category One Architectural & Engineering Firm',
       motto: "It's all about commitment!",
       primaryPhone: '+251 920 517 606',
       secondaryPhone: '+251 913 034 623',
       primaryEmail: 'habtamuengr@gmail.com',
-      officeAddress: 'Wello Sefer, behind Garad Mall, GS Building, 2nd Floor Office @ Menen Engineering PLC, Addis Ababa, Ethiopia',
+      officeAddress:
+        'Wello Sefer, behind Garad Mall, GS Building, 2nd Floor Office @ Menen Engineering PLC, Addis Ababa, Ethiopia',
     },
   });
 
@@ -43,13 +43,12 @@ async function main() {
       email: 'habtamuengr@gmail.com',
       name: 'Eng. Habtamu Getu',
       password: defaultPasswordHash,
-      role: 'SUPERADMIN',
+      role: 'SUPERADMIN' as any,
     },
   });
 
-  // 3. 100% Dynamic Content Dictionary (Every word editable in Admin CMS)
+  // 3. Dynamic Content Dictionary
   const dynamicTexts = [
-    // Hero & Tagline
     {
       key: 'hero_badge',
       section: 'hero',
@@ -66,7 +65,8 @@ async function main() {
       key: 'hero_lead',
       section: 'hero',
       label: 'Hero Description Subtitle',
-      value: 'MENEN Engineering PLC is set to deploy experienced professionals delivering well-targeted, unique design solutions to our clients in particular and the recipient public at large.',
+      value:
+        'MENEN Engineering PLC is set to deploy experienced professionals delivering well-targeted, unique design solutions to our clients in particular and the recipient public at large.',
     },
     {
       key: 'hero_motto',
@@ -74,65 +74,68 @@ async function main() {
       label: 'Corporate Motto / Slogan',
       value: "It's all about commitment!",
     },
-
-    // About & Origin
     {
       key: 'about_welcome',
       section: 'about',
       label: 'Welcome Section Paragraph',
-      value: 'Our team has been involved in numerous architectural design activities in Addis Ababa and regional cities. As verified from our members’ resumes, our specialists have gained valuable academic and practical knowledge domestically and overseas. If given the opportunity, we have the capability and experience to carry out tasks to the utmost satisfaction of our clients and the user community at large.',
+      value:
+        'Our team has been involved in numerous architectural design activities in Addis Ababa and regional cities. As verified from our members’ resumes, our specialists have gained valuable academic and practical knowledge domestically and overseas. If given the opportunity, we have the capability and experience to carry out tasks to the utmost satisfaction of our clients and the user community at large.',
     },
     {
       key: 'about_origin',
       section: 'about',
       label: 'Founding History',
-      value: 'MENEN Engineering was established by Eng. Habtamu Getu and Arch. Samiel Musolino in 2021 to render consultancy services in design, construction supervision, and contract administration. Our approach relies on a combination of individual enthusiasm, professional experience, and collaborative team spirit striving to realize innovative yet practical architectural, engineering, and planning solutions responding to client requirements and contextual realities.',
+      value:
+        'MENEN Engineering was established by Eng. Habtamu Getu and Arch. Samiel Musolino in 2021 to render consultancy services in design, construction supervision, and contract administration. Our approach relies on a combination of individual enthusiasm, professional experience, and collaborative team spirit striving to realize innovative yet practical architectural, engineering, and planning solutions responding to client requirements and contextual realities.',
     },
     {
       key: 'about_message',
       section: 'about',
       label: 'Corporate Message Paragraph',
-      value: 'We, MENEN Engineering PLC, take pride in being one of the leading architectural and engineering teams in Ethiopia, having achieved remarkable growth in a short span and contributing significantly to the development of the country. Our company has left its mark in the construction industry through competitiveness, timely delivery, high-quality design, and recognized engineering services.',
+      value:
+        'We, MENEN Engineering PLC, take pride in being one of the leading architectural and engineering teams in Ethiopia, having achieved remarkable growth in a short span and contributing significantly to the development of the country. Our company has left its mark in the construction industry through competitiveness, timely delivery, high-quality design, and recognized engineering services.',
     },
-
-    // Mission, Vision & Values
     {
       key: 'vision_statement',
       section: 'vision',
       label: 'Company Vision',
-      value: 'To provide best professional services with state-of-the-art solutions irrespective of project size or profitability. We believe in adaptability as an unconditional ability of this time of great changes, among all the conditions of new modernity.',
+      value:
+        'To provide best professional services with state-of-the-art solutions irrespective of project size or profitability. We believe in adaptability as an unconditional ability of this time of great changes, among all the conditions of new modernity.',
     },
     {
       key: 'mission_statement',
       section: 'mission',
       label: 'Company Mission',
-      value: 'MENEN Engineering is committed to consistent improvement of its professional services through a high level of professional integrity and commitment, creating opportunities for young and competitive professionals to apply their knowledge towards development and service of society.',
+      value:
+        'MENEN Engineering is committed to consistent improvement of its professional services through a high level of professional integrity and commitment, creating opportunities for young and competitive professionals to apply their knowledge towards development and service of society.',
     },
     {
       key: 'values_statement',
       section: 'values',
       label: 'Core Company Values',
-      value: 'Carry out our responsibilities in a spirit of partnership with our clients and commit ourselves to consulting services characterized by quality, honesty, and uncompromising client privacy.',
+      value:
+        'Carry out our responsibilities in a spirit of partnership with our clients and commit ourselves to consulting services characterized by quality, honesty, and uncompromising client privacy.',
     },
-
-    // Policies
     {
       key: 'policies_quality',
       section: 'policies',
       label: 'Quality Policy',
-      value: 'Strives to consistently provide quality architectural design with reliable and efficient engineering solutions, subject to total compliance on all challenges, and where possible exceeding the expectations of our clients.',
+      value:
+        'Strives to consistently provide quality architectural design with reliable and efficient engineering solutions, subject to total compliance on all challenges, and where possible exceeding the expectations of our clients.',
     },
     {
       key: 'policies_staff_standards',
       section: 'policies',
       label: 'Staff Standards & Multi-Disciplinary Resource',
-      value: 'Staffs are familiar with prevailing international standards and local regulatory codes. The multidisciplinary educational academic background and professional skills acquired from extensive field experience provide an integrated and diversified resource.',
+      value:
+        'Staffs are familiar with prevailing international standards and local regulatory codes. The multidisciplinary educational academic background and professional skills acquired from extensive field experience provide an integrated and diversified resource.',
     },
     {
       key: 'policies_nodes',
       section: 'policies',
       label: 'Design Philosophy Nodes',
-      value: 'Photography, sociology, economy, politics, traditions, technologies, agriculture, and crafts are all nodes of development upon which we base our design care.',
+      value:
+        'Photography, sociology, economy, politics, traditions, technologies, agriculture, and crafts are all nodes of development upon which we base our design care.',
     },
   ];
 
@@ -152,9 +155,10 @@ async function main() {
       department: 'Executive Leadership / Structural',
       order: 1,
       isExecutive: true,
-      credentials: 'MSc Chalmers University (Sweden 2019) | MSc AAiT (2017) | BSc Bahir Dar (2014) | Messina University Dynamics (Italy 2018)',
+      credentials:
+        'MSc Chalmers University (Sweden 2019) | MSc AAiT (2017) | BSc Bahir Dar (2014) | Messina University Dynamics (Italy 2018)',
       bio: 'The Chief Executive Officer and lead structural engineer of MENEN Engineering PLC. Habtamu obtained his MSc in Design & Construction Project Management from Chalmers University of Technology, Sweden (2019), and attended structural dynamics seminars at University of Messina, Italy (2018). He holds an MSc in Structural Engineering from Addis Ababa Institute of Technology (2017) and BSc in Civil Engineering from Bahir Dar University (2014). He has practiced with prestigious consultants including Fasil Ghiorghis CAE on landmark projects: National Palace Conservation, Holy Trinity Cathedral Conservation, Jimma Aba Jiffar Conservation, as well as multiple high-rise mixed-use, apartment, education, and hospitality structures across Addis Ababa and regional cities.',
-      avatarUrl: null, // Renders clean blueprint silhouette placeholder
+      avatarUrl: null,
       linkedinUrl: 'https://www.linkedin.com/in/habtamu-getu-menen',
       email: 'habtamuengr@gmail.com',
       phone: '+251920517606',
@@ -165,9 +169,10 @@ async function main() {
       department: 'Executive Leadership / Architecture',
       order: 2,
       isExecutive: true,
-      credentials: "Master's Degree in Advanced Architecture Design, ENSA de la Ville et des Territoires, Marne-la-Vallée, Paris (2011)",
+      credentials:
+        "Master's Degree in Advanced Architecture Design, ENSA de la Ville et des Territoires, Paris (2011)",
       bio: 'Born in Italy and raised in both European and African heritages. Graduated with a Master’s Degree in Advanced Architecture Design in Paris. Worked for various Parisian design firms and won multiple architectural competitions with Mikou Design Studio. Served as interior consultant for municipal and university libraries across France, Belarus, and Guadeloupe, as well as the fashion firm LIU.JO in France. Member of Urban Future Organization, Italy. Co-managed AfroDesign CAE and Fasil Giorghis CAE on large-scale works, and collaborates with the FDRE Ministry of Tourism as senior architect and strategic adviser.',
-      avatarUrl: null, // Renders clean blueprint silhouette placeholder
+      avatarUrl: null,
       linkedinUrl: 'https://www.linkedin.com/in/samiel-musolino',
       email: 'samiel.musolino@menenengineering.com',
       phone: '+251913034623',
@@ -178,9 +183,10 @@ async function main() {
       department: 'Architectural Design Department',
       order: 3,
       isExecutive: true,
-      credentials: 'Chair Head of History and Theory of Architecture at EiABC, Addis Ababa University (15+ Years Academic & Research)',
+      credentials:
+        'Chair Head of History and Theory of Architecture at EiABC, Addis Ababa University (15+ Years Academic & Research)',
       bio: 'Academic researcher and chair head of History and Theory of Architecture at EiABC, Addis Ababa University. Over 15 years of university teaching at AAU and Mekelle University. Active professional architect working with Bereket Tesfaye CAE and Fasil Ghiorghis CAE. Leading architect for major developments including Elilta Real Estate’s luxurious 4B+G+21 mixed-use high-rise at Sarbet, Addis Ababa. Senior architect on large-scale architectural conservation and urban masterplans.',
-      avatarUrl: null, // Renders clean blueprint silhouette placeholder
+      avatarUrl: null,
       linkedinUrl: 'https://www.linkedin.com/in/ephrem-architect',
       email: 'ephrem.design@menenengineering.com',
       phone: null,
@@ -190,13 +196,13 @@ async function main() {
   for (const member of teamMembers) {
     const existing = await prisma.teamMember.findFirst({ where: { name: member.name } });
     if (existing) {
-      await prisma.teamMember.update({ where: { id: existing.id }, data: member });
+      await prisma.teamMember.update({ where: { id: existing.id }, data: member as any });
     } else {
-      await prisma.teamMember.create({ data: member });
+      await prisma.teamMember.create({ data: member as any });
     }
   }
 
-  // 5. Complete Projects from Profile Document (with blueprint fallbacks & video/audio fields)
+  // 5. Complete Projects
   const projects = [
     {
       title: '4B+G+M+23 MXD Tower',
@@ -204,13 +210,13 @@ async function main() {
       client: 'KK PLC',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'MXD',
+      category: 'Architecture',
       status: ProjectStatus.UNDER_CONSTRUCTION,
       scopeOfWork: '1st Prize Awarded Schematic Design & Complete Architectural/Engineering Design Services',
       awards: '1st Prize Awarded Schematic Design Project',
       description: 'Major high-rise mixed-use development comprising four basements, ground, mezzanine, and 23 upper stories.',
-      featuredImage: null, // Will use technical blueprint placeholder
-      featuredVideo: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Placeholder walkthrough video
+      featuredImage: null,
+      featuredVideo: null,
       audioNarrative: null,
       order: 1,
       isFeatured: true,
@@ -221,7 +227,7 @@ async function main() {
       client: 'KANMAX Engineering & Trading PLC',
       associatedFirms: 'ADCAE PLC + MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'MXD',
+      category: 'Architecture',
       status: ProjectStatus.LAND_ACQUISITION_PROCESS,
       scopeOfWork: '2nd Prize Awarded Schematic Design & Comprehensive Engineering Review',
       awards: '2nd Prize Awarded Schematic Design Project',
@@ -238,7 +244,7 @@ async function main() {
       client: 'KK PLC',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'MXD',
+      category: 'Architecture',
       status: ProjectStatus.LAND_ACQUISITION_PROCESS,
       scopeOfWork: '1st Prize Awarded Schematic Design Proposed Multi-Typology Masterplan',
       awards: '1st Prize Awarded Schematic Design Proposed Project',
@@ -255,7 +261,7 @@ async function main() {
       client: 'Ato Gashaw Serigalem',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'APT',
+      category: 'Residential',
       status: ProjectStatus.DESIGN_PERMIT_PROCESS,
       scopeOfWork: 'Complete Architectural & Engineering Design Services',
       awards: null,
@@ -272,7 +278,7 @@ async function main() {
       client: 'Dr. Birhanu',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'APT',
+      category: 'Residential',
       status: ProjectStatus.DESIGN_PERMIT_PROCESS,
       scopeOfWork: 'Complete Architectural & Engineering Design Services (Permit Process Completed)',
       awards: null,
@@ -289,7 +295,7 @@ async function main() {
       client: 'Joburg Real Estate | Ato Abraham',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'RLS',
+      category: 'Interiors',
       status: ProjectStatus.COMPLETED,
       scopeOfWork: 'Complete Architectural Review and Interior Design Package',
       awards: null,
@@ -306,7 +312,7 @@ async function main() {
       client: 'Ato Elias | Ato Hilawi',
       associatedFirms: 'ADCAE PLC + MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'APT',
+      category: 'Residential',
       status: ProjectStatus.DESIGN_PHASE,
       scopeOfWork: 'Complete Architectural & Engineering Design Services',
       awards: null,
@@ -323,7 +329,7 @@ async function main() {
       client: 'BULLALEAS Real Estate PLC',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'APT',
+      category: 'Residential',
       status: ProjectStatus.DESIGN_PHASE,
       scopeOfWork: 'FULL Architectural Design Services',
       awards: null,
@@ -340,7 +346,7 @@ async function main() {
       client: 'DYF Real Estate PLC',
       associatedFirms: 'ADCAE PLC + MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'RLS',
+      category: 'Architecture',
       status: ProjectStatus.DESIGN_PHASE,
       scopeOfWork: 'Schematic Architectural Design Proposed Project',
       awards: null,
@@ -357,7 +363,7 @@ async function main() {
       client: 'AYF TRADING PLC',
       associatedFirms: 'ADCAE PLC + MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'HSP',
+      category: 'Hospitality',
       status: ProjectStatus.DESIGN_PHASE,
       scopeOfWork: 'Complete Architectural Design Proposed Project',
       awards: null,
@@ -374,7 +380,7 @@ async function main() {
       client: 'Jupiter Trading PLC',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'HSP',
+      category: 'Hospitality',
       status: ProjectStatus.DESIGN_PERMIT_PROCESS,
       scopeOfWork: 'Complete Architectural & Engineering Design Services (Permit Process Completed)',
       awards: null,
@@ -391,7 +397,7 @@ async function main() {
       client: 'Ato Getachew',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'HSP',
+      category: 'Hospitality',
       status: ProjectStatus.UNDER_CONSTRUCTION,
       scopeOfWork: 'Complete Architectural & Engineering Design Services & Construction Supervision',
       awards: null,
@@ -408,7 +414,7 @@ async function main() {
       client: 'GRAND CENTRAL ARBA MINCH HOTEL',
       associatedFirms: 'ADCAE PLC + MENEN Engineering PLC',
       location: 'Arba Minch',
-      category: 'HSP',
+      category: 'Hospitality',
       status: ProjectStatus.DESIGN_PHASE,
       scopeOfWork: 'Complete Architectural & Engineering Design Services (2B+G+M+4 HSP, B+G+1 RES)',
       awards: null,
@@ -425,7 +431,7 @@ async function main() {
       client: 'ROYAL HOTEL',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Bonga',
-      category: 'HSP',
+      category: 'Hospitality',
       status: ProjectStatus.UNDER_CONSTRUCTION,
       scopeOfWork: 'Complete Architectural & Engineering Design Services',
       awards: null,
@@ -442,7 +448,7 @@ async function main() {
       client: 'Ato Ketema Kebede',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'LND',
+      category: 'Landscape',
       status: ProjectStatus.UNDER_CONSTRUCTION,
       scopeOfWork: 'Complete Architectural & Landscape Design Services',
       awards: null,
@@ -459,7 +465,7 @@ async function main() {
       client: 'Ato Aleme',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Bahir Dar',
-      category: 'MXD',
+      category: 'Planning',
       status: ProjectStatus.UNDER_CONSTRUCTION,
       scopeOfWork: 'Complete Architectural & Engineering Design Services (8 High-Rise Towers)',
       awards: null,
@@ -476,7 +482,7 @@ async function main() {
       client: 'FDRE Ministry of Tourism',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'INT',
+      category: 'Interiors',
       status: ProjectStatus.COMPLETED,
       scopeOfWork: 'Complete Interior Design & Supervision Coordination',
       awards: null,
@@ -493,7 +499,7 @@ async function main() {
       client: 'National Palace Administration / FDRE',
       associatedFirms: 'MENEN Engineering PLC',
       location: 'Addis Ababa',
-      category: 'STR',
+      category: 'Culture',
       status: ProjectStatus.COMPLETED,
       scopeOfWork: 'FULL Architectural Design & Historic Conservation Engineering',
       awards: null,
@@ -510,7 +516,7 @@ async function main() {
       client: 'FDRE Immigration & Citizenship Services',
       associatedFirms: 'MENEN Engineering PLC',
       location: '37 Ethiopian Border Prototype Sites',
-      category: 'STR',
+      category: 'Infrastructure',
       status: ProjectStatus.BOQ_AND_TENDER,
       scopeOfWork: 'BoQ, Tender Documentation, Full Architectural & Supervision Services',
       awards: null,
@@ -526,8 +532,8 @@ async function main() {
   for (const project of projects) {
     await prisma.project.upsert({
       where: { slug: project.slug },
-      update: project,
-      create: project,
+      update: project as any,
+      create: project as any,
     });
   }
 
