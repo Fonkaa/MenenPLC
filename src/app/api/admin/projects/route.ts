@@ -3,6 +3,27 @@ import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
+function normalizeDescriptionSteps(rawSteps: any) {
+  if (rawSteps === undefined || rawSteps === null) return undefined;
+
+  let steps = rawSteps;
+  if (typeof steps === 'string') {
+    try {
+      steps = JSON.parse(steps);
+    } catch {
+      return undefined;
+    }
+  }
+
+  if (!Array.isArray(steps)) return undefined;
+
+  return steps.map((step: any, idx: number) => ({
+    image: step.imageUrl || step.image || '',
+    caption: step.caption || `Perspective 0${idx + 1}`,
+    narrative: step.narrative || step.description || step.text || '',
+  }));
+}
+
 // GET all projects
 export async function GET() {
   try {
@@ -27,33 +48,41 @@ export async function POST(req: Request) {
       '-' +
       Date.now().toString().slice(-4);
 
-    // Normalize gallery images array
     const galleryImages: string[] = Array.isArray(data.galleryImages)
       ? data.galleryImages
       : data.featuredImage
       ? [data.featuredImage]
       : [];
 
+    const parsedSteps = normalizeDescriptionSteps(data.descriptionSteps);
+
     const created = await prisma.project.create({
       data: {
         title: data.title,
         slug: data.slug || slug,
-        client: data.client,
+        client: data.client || 'MENEN Client',
         associatedFirms: data.associatedFirms || 'MENEN Engineering PLC',
         location: data.location || 'Addis Ababa',
-        category: data.category || 'MXD',
+        category: data.category || 'Architecture',
         status: data.status || 'UNDER_CONSTRUCTION',
-        scopeOfWork: data.scopeOfWork,
+        scopeOfWork: data.scopeOfWork || '',
         awards: data.awards || null,
         description: data.description || null,
+        descriptionSteps: parsedSteps || undefined,
         featuredImage: data.featuredImage || galleryImages[0] || null,
-        galleryImages: galleryImages, // Persist 3D gallery images array
+        galleryImages: galleryImages,
         featuredVideo: data.featuredVideo || null,
         audioNarrative: data.audioNarrative || null,
+        creativeDirector: data.creativeDirector || 'Arch. Samiel Musolino',
+        partnerInCharge: data.partnerInCharge || 'Eng. Habtamu Getu',
+        projectManager: data.projectManager || 'Arch. Ephrem',
+        projectTeam: data.projectTeam || 'MENEN Architecture & Engineering Studio',
+        mapCoordinates: data.mapCoordinates || 'Addis Ababa, Ethiopia',
         isFeatured: Boolean(data.isFeatured),
         order: Number(data.order) || 0,
       },
     });
+
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
     console.error('Error creating project:', error);
@@ -69,33 +98,61 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: 'Project ID required' }, { status: 400 });
     }
 
-    // Normalize gallery images array
-    const galleryImages: string[] = Array.isArray(data.galleryImages)
-      ? data.galleryImages
-      : data.featuredImage
-      ? [data.featuredImage]
-      : [];
+    let galleryImages: string[] | undefined = undefined;
+    if (data.galleryImages !== undefined) {
+      galleryImages = Array.isArray(data.galleryImages)
+        ? data.galleryImages
+        : data.featuredImage
+        ? [data.featuredImage]
+        : [];
+    }
+
+    const parsedSteps = normalizeDescriptionSteps(data.descriptionSteps);
 
     const updated = await prisma.project.update({
       where: { id: data.id },
       data: {
-        title: data.title,
-        client: data.client,
-        associatedFirms: data.associatedFirms,
-        location: data.location,
-        category: data.category,
-        status: data.status,
-        scopeOfWork: data.scopeOfWork,
-        awards: data.awards || null,
-        description: data.description || null,
-        featuredImage: data.featuredImage || galleryImages[0] || null,
-        galleryImages: galleryImages, // Update 3D gallery images array
-        featuredVideo: data.featuredVideo || null,
-        audioNarrative: data.audioNarrative || null,
-        isFeatured: Boolean(data.isFeatured),
-        order: Number(data.order) || 0,
+        title: data.title !== undefined ? data.title : undefined,
+        slug: data.slug !== undefined ? data.slug : undefined,
+        client: data.client !== undefined ? data.client : undefined,
+        associatedFirms: data.associatedFirms !== undefined ? data.associatedFirms : undefined,
+        location: data.location !== undefined ? data.location : undefined,
+        category: data.category !== undefined ? data.category : undefined,
+        status: data.status !== undefined ? data.status : undefined,
+        scopeOfWork: data.scopeOfWork !== undefined ? data.scopeOfWork : undefined,
+        awards: data.awards !== undefined ? data.awards : undefined,
+        description: data.description !== undefined ? data.description : undefined,
+        descriptionSteps: parsedSteps !== undefined ? parsedSteps : undefined,
+        featuredImage: data.featuredImage !== undefined ? data.featuredImage : undefined,
+        galleryImages: galleryImages !== undefined ? galleryImages : undefined,
+        featuredVideo: data.featuredVideo !== undefined ? data.featuredVideo : undefined,
+        audioNarrative: data.audioNarrative !== undefined ? data.audioNarrative : undefined,
+        // Fallback to default if null is passed to non-nullable fields
+        creativeDirector:
+          data.creativeDirector !== undefined
+            ? data.creativeDirector || 'Arch. Samiel Musolino'
+            : undefined,
+        partnerInCharge:
+          data.partnerInCharge !== undefined
+            ? data.partnerInCharge || 'Eng. Habtamu Getu'
+            : undefined,
+        projectManager:
+          data.projectManager !== undefined
+            ? data.projectManager || 'Arch. Ephrem'
+            : undefined,
+        projectTeam:
+          data.projectTeam !== undefined
+            ? data.projectTeam || 'MENEN Architecture & Engineering Studio'
+            : undefined,
+        mapCoordinates:
+          data.mapCoordinates !== undefined
+            ? data.mapCoordinates || 'Addis Ababa, Ethiopia'
+            : undefined,
+        isFeatured: data.isFeatured !== undefined ? Boolean(data.isFeatured) : undefined,
+        order: data.order !== undefined ? Number(data.order) : undefined,
       },
     });
+
     return NextResponse.json(updated);
   } catch (error) {
     console.error('Error updating project:', error);

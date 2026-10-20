@@ -193,9 +193,9 @@ Key design criteria included:
     keywords: ['excavation', 'shoring', 'basement', 'piles', 'anchors', 'soldier', 'geotechnical', 'adjacent', 'subsidence'],
     response: `Addis Ababa's dense urban corridors require specialized excavation support. MENEN Engineering designs custom shoring systems:
 
-1. **Soldier Piles with Tieback Anchors:** Multi-row prestressed ground anchors locked into bedrock to prevent horizontal deflection.
-2. **Secant & Contiguous Piling:** Used where shallow groundwater threatens adjacent multi-story buildings.
-3. **Inclinometer Monitoring:** Continuous electronic displacement monitoring ensuring adjacent foundations experience zero settlement or cracking during 3-to-5 level basement excavation.`
+1. Soldier Piles with Tieback Anchors:Multi-row prestressed ground anchors locked into bedrock to prevent horizontal deflection.
+2. Secant & Contiguous Piling: Used where shallow groundwater threatens adjacent multi-story buildings.
+3. Inclinometer Monitoring: Continuous electronic displacement monitoring ensuring adjacent foundations experience zero settlement or cracking during 3-to-5 level basement excavation.`
   },
 
   // 14. Retrofitting & Rehabilitation
@@ -206,9 +206,9 @@ Key design criteria included:
     keywords: ['retrofit', 'repair', 'cracking', 'damage', 'strengthening', 'carbon fiber', 'cfrp', 'jacketing', 'safety', 'permit review'],
     response: `Yes. Eng. Habtamu leads building pathology and structural rehabilitation services:
 
-- **Non-Destructive Testing (NDT):** Concrete Schmidt rebound hammer tests, ultrasonic pulse velocity, and rebar pacometer scans.
-- **Strengthening Solutions:** Reinforced concrete column jacketing, steel beam flitching, and Carbon Fiber Reinforced Polymer (CFRP) composite wraps for under-strength slabs.
-- **Municipal Design Reviews:** Engineering reports for regularization of unpermitted structures or buildings changing use (e.g. converting apartments into hospitals or schools).`
+- Non-Destructive Testing (NDT): Concrete Schmidt rebound hammer tests, ultrasonic pulse velocity, and rebar pacometer scans.
+- Strengthening Solutions: Reinforced concrete column jacketing, steel beam flitching, and Carbon Fiber Reinforced Polymer (CFRP) composite wraps for under-strength slabs.
+- Municipal Design Reviews: Engineering reports for regularization of unpermitted structures or buildings changing use (e.g. converting apartments into hospitals or schools).`
   },
 
   // 15. Mass Timber & Sustainable Materials
@@ -258,9 +258,9 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     keywords: ['boq', 'bill of quantities', 'tender', 'cost', 'estimation', 'budget', 'procurement', 'contractor', 'bid'],
     response: `MENEN produces comprehensive, bank-grade Bill of Quantities (BoQ) and tender packages:
 
-- **Detailed Itemized Measurement:** Derived from structural 3D models with bar bending schedules (BBS) and concrete volumetric takeoffs.
-- **Technical Specifications:** Strict material quality metrics for 42.5R Portland cement, Grade 60 / 500 MPa rebar, waterproofing admixtures, and façade systems.
-- **Confidential Engineer’s Cost Estimates:** Market-aligned unit rate breakdowns used by developers to evaluate contractor bids and negotiate fixed-price contracts.`
+- Detailed Itemized Measurement: Derived from structural 3D models with bar bending schedules (BBS) and concrete volumetric takeoffs.
+- Technical Specifications: Strict material quality metrics for 42.5R Portland cement, Grade 60 / 500 MPa rebar, waterproofing admixtures, and façade systems.
+- Confidential Engineer’s Cost Estimates: Market-aligned unit rate breakdowns used by developers to evaluate contractor bids and negotiate fixed-price contracts.`
   },
 
   // 19. Construction Supervision & Quality Control
@@ -271,9 +271,9 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     keywords: ['supervision', 'resident', 'engineer', 'site', 'inspection', 'quality control', 'pour', 'concrete test'],
     response: `Yes. MENEN assigns dedicated resident structural engineers and MEP inspectors to project sites:
 
-- **Pre-Pour Checklists:** Rebar spacing, lap lengths, cover blocks, conduit coordination, and formwork stability verified prior to casting.
-- **Cylinder Testing Oversight:** Continuous verification of 7-day and 28-day concrete compressive crushing strengths at accredited laboratories.
-- **Interim Payment Certificates (IPC):** Verification of physical progress milestones before contractor invoices are approved for bank disbursement.`
+- Pre-Pour Checklists: Rebar spacing, lap lengths, cover blocks, conduit coordination, and formwork stability verified prior to casting.
+- Cylinder Testing Oversight: Continuous verification of 7-day and 28-day concrete compressive crushing strengths at accredited laboratories.
+- Interim Payment Certificates (IPC): Verification of physical progress milestones before contractor invoices are approved for bank disbursement.`
   },
 
   // 20. Submission & Consultation Process
@@ -284,9 +284,9 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     keywords: ['submit', 'brief', 'intake', 'portal', 'consultation', 'book', 'hire', 'start', 'meeting', 'project brief'],
     response: `Clients can initiate an architectural or structural commission through:
 
-1. **Digital Intake Portal:** Use our online **[Submit Project Brief](/submit-project)** form to transmit project drawings, site dimensions, coordinates, or architectural sketches (supports PDF documents up to 25MB).
-2. **Direct Executive Line:** Call Eng. Habtamu directly at **+251 920 517 606** or **+251 913 034 623**.
-3. **Office Consultation:** Schedule an in-person working session at our headquarters in Wello Sefer, GS Building, 2nd Floor, Addis Ababa.`
+1. Digital Intake Portal: Use our online **[Submit Project Brief](/submit-project)** form to transmit project drawings, site dimensions, coordinates, or architectural sketches (supports PDF documents up to 25MB).
+2. Direct Executive Line: Call Eng. Habtamu directly at **+251 920 517 606** or **+251 913 034 623**.
+3. Office Consultation: Schedule an in-person working session at our headquarters in Wello Sefer, GS Building, 2nd Floor, Addis Ababa.`
   },
 
   // 21. Fee Structure & Proposal Turnaround
@@ -297,9 +297,9 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     keywords: ['fee', 'cost', 'price', 'proposal', 'payment', 'percentage', 'quote', 'contract', 'rate'],
     response: `MENEN Engineering operates with transparent, standardized engineering fee models based on project scope:
 
-- **Percentage of Construction Cost:** Standard for full turnkey design (Architecture + Structure + MEP + Supervision).
-- **Lump-Sum Fixed Pricing:** Applied to discrete packages such as structural-only engineering, shoring design, or structural review.
-- **Turnaround:** Upon receiving your plot location and spatial requirements through the Submit Brief portal, our engineering board delivers a formal technical & financial proposal within **48 to 72 business hours**.`
+- Percentage of Construction Cost: Standard for full turnkey design (Architecture + Structure + MEP + Supervision).
+- Lump-Sum Fixed Pricing: Applied to discrete packages such as structural-only engineering, shoring design, or structural review.
+- Turnaround: Upon receiving your plot location and spatial requirements through the Submit Brief portal, our engineering board delivers a formal technical & financial proposal within **48 to 72 business hours**.`
   },
 
   // 22. Student Internships & Apprenticeships
@@ -310,9 +310,9 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     keywords: ['internship', 'student', 'university', 'apprentice', 'training', 'mentorship', 'cgpa', 'civil engineering', 'revit', 'etabs'],
     response: `In alignment with our corporate mission of youth empowerment, MENEN Engineering hosts competitive semester internships for 4th and 5th-year students from AAiT, ASTU, Bahir Dar University, and accredited institutions:
 
-- **Practical Software Immersion:** Hands-on training in ETABS frame modeling, SAFE mat foundation design, and Revit rebar detailing under senior licensed engineers.
-- **Active Site Rotations:** Weekly field rotations to high-rise basement excavations, core-wall pours, and steel fabrication yards.
-- **Application Portal:** Students submit academic transcripts, CGPA, and statement of purpose via the **[Student Internship Portal](/submit-project)**.`
+- Practical Software Immersion: Hands-on training in ETABS frame modeling, SAFE mat foundation design, and Revit rebar detailing under senior licensed engineers.
+- Active Site Rotations: Weekly field rotations to high-rise basement excavations, core-wall pours, and steel fabrication yards.
+- Application Portal: Students submit academic transcripts, CGPA, and statement of purpose via the **[Student Internship Portal](/submit-project)**.`
   },
 
   // 23. Complete Contact Directory
@@ -321,14 +321,14 @@ This is the highest consulting classification in Ethiopia. It permits MENEN to l
     category: 'Direct Contacts',
     question: 'What are all verified telephone numbers, emails, and physical office coordinates?',
     keywords: ['contact', 'phone', 'email', 'address', 'location', 'office', 'wello sefer', 'garad mall', 'gs building', 'call'],
-    response: `**MENEN Engineering PLC — Official Contact Registry:**
+    response: `MENEN Engineering PLC — Official Contact Registry:**
 
-- **CEO & General Manager:** Eng. Habtamu Getu Mihret
-- **Primary Hotline:** +251 920 517 606
-- **Secondary Operations Line:** +251 913 034 623
-- **Official Inquiries Email:** [habtamuengr@gmail.com](mailto:habtamuengr@gmail.com)
-- **Physical Headquarters:** Wello Sefer, behind Garad Mall, GS Building, 2nd Floor Office, Addis Ababa, Ethiopia.
-- **Digital Portal:** [menen-engineering.onrender.com](https://menen-engineering.onrender.com)`
+- **CEO & General Manager: Eng. Habtamu Getu Mihret
+- **Primary Hotline: +251 920 517 606
+- Secondary Operations Line: +251 913 034 623
+- Official Inquiries Email: [habtamuengr@gmail.com](mailto:habtamuengr@gmail.com)
+- Physical Headquarters:** Wello Sefer, behind Garad Mall, GS Building, 2nd Floor Office, Addis Ababa, Ethiopia.
+- Digital Portal:[menen-engineering.onrender.com](https://menen-engineering.onrender.com)`
   },
 
   // 24. Verified Social Profiles
@@ -389,12 +389,12 @@ export function queryCeoKnowledge(rawQuery: string): string {
 
 I could not find an exact match for your phrasing, but I can answer questions across 24 verified domains:
 
-1. 🎓 **Academics:** Chalmers University (Sweden) MSc, Univ. of Messina (Italy) Seismic Certification, AAiT Master's Thesis, Bahir Dar BSc.
-2. 🏢 **Signature High-Rises:** 4B+G+M+23 KK Tower, 3B+G+22 Bullaleas Apartments, 8 Towers Lake Tana Masterplan, National Palace Reception.
-3. 🌉 **Infrastructure & Heritage:** HELVETAS Trail Bridge program, Fasil Giorghis restorations (Jubilee Palace, Aba Jiffar, Holy Trinity).
-4. ⚙️ **Technical Tools:** Non-linear FEA (Abaqus, DIANA, ETABS, SAP2000, Tekla), deep basement shoring & sheet piling.
-5. ⚖️ **Legal & Licensing:** Category 1 Firm designation, Addis Ababa municipal permit approvals, and BoQ tender packages.
-6. 📞 **Contact & Booking:** Scheduling technical consultations, fee proposals, and student internship intake.
+1. 🎓 Academics: Chalmers University (Sweden) MSc, Univ. of Messina (Italy) Seismic Certification, AAiT Master's Thesis, Bahir Dar BSc.
+2. 🏢 Signature High-Rises: 4B+G+M+23 KK Tower, 3B+G+22 Bullaleas Apartments, 8 Towers Lake Tana Masterplan, National Palace Reception.
+3. 🌉 Infrastructure & Heritage: HELVETAS Trail Bridge program, Fasil Giorghis restorations (Jubilee Palace, Aba Jiffar, Holy Trinity).
+4. ⚙️ Technical Tools: Non-linear FEA (Abaqus, DIANA, ETABS, SAP2000, Tekla), deep basement shoring & sheet piling.
+5. ⚖️ Legal & Licensing: Category 1 Firm designation, Addis Ababa municipal permit approvals, and BoQ tender packages.
+6. 📞 Contact & Booking: Scheduling technical consultations, fee proposals, and student internship intake.
 
 Try selecting one of the suggested buttons above or ask any technical engineering question!`;
 }

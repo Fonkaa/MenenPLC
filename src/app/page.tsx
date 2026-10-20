@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import OpeningLogoReveal from '@/components/brand/ScrollBoundPyramidBackground';
 import { ALL_CLASSIFICATIONS } from '@/components/layout/Navbar';
+import FloatingCeoDossier from '@/components/team/FloatingCeoDossier';
 import { 
   MapPin, 
   X, 
@@ -12,9 +13,9 @@ import {
 } from 'lucide-react';
 
 export interface ProjectPlate {
-  image: string;
-  caption: string;
-  narrative: string;
+  image?: string;
+  caption?: string;
+  narrative?: string;
 }
 
 export interface DynamicProject {
@@ -47,6 +48,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'UNDER_CONSTRUCTION',
     scopeOfWork: '1st Prize Awarded Schematic Design & Complete Architectural/Engineering Design Services.',
+    description: 'A 25-level mixed-use tower providing seamless commercial integration at street level, transitioning into grade-A office suites and panoramic high-rise residential layouts.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008097/menen-engineering/am4bvblsg6leitcejaxw.jpg',
@@ -74,6 +76,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Historic Conservation Engineering.',
+    description: 'A delicate dialogue between monumental Ethiopian civic history and contemporary diplomatic hospitality, respecting original limestone geometry.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791009486/menen-engineering/jcilgfpt5wlmamyhhwxw.jpg',
@@ -106,6 +109,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: '37 Ethiopian Border Prototype Sites',
     status: 'BOQ_AND_TENDER',
     scopeOfWork: 'BoQ, Tender Documentation, Full Architectural & Supervision Services.',
+    description: 'A robust national border infrastructure design replicable across 37 diverse micro-climates along the borders of Ethiopia.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007845/menen-engineering/djkpcjvrkeqlwswuwklf.jpg',
@@ -133,6 +137,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Construction Supervision.',
+    description: 'High-performance pedagogical facilities planned around central learning courtyards that optimize cross-ventilation and natural daylight across all lecture halls.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791177202/menen-engineering/file_nij48w.jpg',
@@ -155,6 +160,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'Multifunctional retail complex responding directly to the bustling commercial fabric of Shiromeda.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791178843/menen-engineering/file_jcyfjs.jpg',
@@ -177,6 +183,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PERMIT_PROCESS',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'High-rise hospitality development featuring luxury guest suites, conference facilities, and sky lounges with panoramic urban vistas.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007237/menen-engineering/fmgcqs28ujtvown4t8rx.jpg',
@@ -199,6 +206,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'Complete Architectural Design Proposed Project.',
+    description: 'Nine-story bespoke hospitality architecture combining cultural motifs with modern corporate business hotel specifications.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007167/menen-engineering/fa1sph6ozbsipfavw8ja.jpg',
@@ -221,6 +229,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'LAND_ACQUISITION_PROCESS',
     scopeOfWork: '2nd Prize Awarded Schematic Design & Comprehensive Engineering Review.',
+    description: 'Award-winning architectural solution integrating four levels of basement parking with dynamic commercial and residential zoning.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008164/menen-engineering/uf0hwosnw2ay38yyrubq.jpg',
@@ -243,6 +252,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Large-span clear ceiling logistics design providing heavy vehicle docking, automated loading bays, and administrative space.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791176974/menen-engineering/file_siinn4.jpg',
@@ -265,6 +275,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'FULL Architectural Design Services.',
+    description: 'Twenty-two levels of luxury residential suites designed with private terraces, expansive glazing, and dedicated recreational floor plates.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007101/menen-engineering/hd6uidmn6px3vigabuye.jpg',
@@ -287,6 +298,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'A bespoke family compound arranged vertically to maximize privacy, natural light, and city views on a compact urban plot in central Addis Ababa.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180706/menen-engineering/file_uqema1.jpg',
@@ -309,6 +321,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural Review Process.',
+    description: 'Urban infill high-density architecture optimizing natural sunlight and commercial storefront visibility.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791181126/menen-engineering/file_c22mi1.jpg',
@@ -331,6 +344,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Nineteen-story hospitality building with state-of-the-art HVAC systems and acoustic envelope dampening.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179775/menen-engineering/file_tdrkua.jpg',
@@ -353,6 +367,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Bahir Dar',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'An eight-tower mixed-use urban community facing Lake Tana with integrated plazas, pedestrian promenades, and civic amenities.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007619/menen-engineering/eka9vpscovgbpas1lvp2.jpg',
@@ -375,6 +390,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'LAND_ACQUISITION_PROCESS',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'A holistic architectural scheme balancing residential villas, multi-family apartments, and streetfront retail.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007032/menen-engineering/mi4s2oohj90ce5z2iwn5.jpg',
@@ -397,6 +413,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'Schematic Architectural Design Proposed Project.',
+    description: 'High-performance skyscraper designed with aerodynamic curtain wall paneling and subterranean parking.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007304/menen-engineering/jy4dgvvsdw9xd9msalwo.jpg',
@@ -419,6 +436,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Interior Design & Supervision Coordination.',
+    description: 'Custom millwork, acoustic timber wall paneling, and bespoke lighting fixtures articulating Ethiopian craftsmanship within a modern diplomatic workplace.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007765/menen-engineering/kwurkuwtiyammqduhw6v.jpg',
@@ -441,6 +459,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PERMIT_PROCESS',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'Contemporary apartment living offering high acoustic isolation, basement parking, and rooftop entertainment.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791006953/menen-engineering/nha180vpnjzcgowhzng3.jpg',
@@ -463,6 +482,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Engineered with long-span steel trusses and heavy-duty industrial floor slabs designed to handle high-frequency logistics transport and automated packaging machinery.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791176840/menen-engineering/file_oviwwx.jpg',
@@ -485,6 +505,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Landscape Design Services.',
+    description: 'Extensive grading and water stewardship integration connecting indoor living zones directly to outdoor terraced gardens, stone pathways, and meditation pavilions.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791007470/menen-engineering/nbucizol8gokd3wuhce7.jpg',
@@ -507,6 +528,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Structural Design, Long-Span Steel Framing & Supervision.',
+    description: 'A column-free indoor multi-sport arena engineered with custom structural steel trusses, acoustic dampening wall assemblies, and professional sprung hardwood court systems.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791177113/menen-engineering/file_jfuplp.jpg',
@@ -529,6 +551,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Arba Minch',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'Complete Architectural & Engineering Design Services (2B+G+M+4 HSP, B+G+1 RES).',
+    description: 'A hospitality destination capturing views across Lake Abaya and Chamo, blending indigenous Rift Valley stone textures with international resort luxury.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791009099/menen-engineering/zmwg6yi4kkzxjrwhjrvx.jpg',
@@ -551,6 +574,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Bonga',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'Eight-story premium hotel in Bonga offering executive hospitality services and modern structural design.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791009166/menen-engineering/efinuas8twqfan1oskhj.jpg',
@@ -573,6 +597,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Jimma',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design Services.',
+    description: 'Classroom facility designed with wide solar shading fins, modular partition abilities, and robust concrete frames.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791177914/menen-engineering/file_uefztc.jpg',
@@ -595,6 +620,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Sekota',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Regional educational service center built with thermal massing concrete and stone masonry.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791177827/menen-engineering/file_pyasfs.jpg',
@@ -617,6 +643,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: '2nd Prize Awarded Design Proposed Project.',
+    description: 'Thirty-story architectural monument featuring four basements and semi-basement commercial centers.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180062/menen-engineering/file_ltut6z.jpg',
@@ -639,6 +666,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Nineteen-story commercial workplace emphasizing corporate atrium visibility and seismic stability.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179655/menen-engineering/file_dheilz.jpg',
@@ -661,6 +689,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Design Renovation Services.',
+    description: 'Modern residential renovation retrofitting high thermal efficiency and open-plan interior units.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179897/menen-engineering/file_uf5fqm.jpg',
@@ -683,6 +712,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Interior Design and Supervision.',
+    description: 'Luxury workplace detailing with bespoke executive timber joinery and concealed acoustic paneling.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791178998/menen-engineering/file_dzb876.jpg',
@@ -705,6 +735,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural Review Design Services.',
+    description: 'Private multi-level family estate integrating double-height living areas with stone terrace gardens.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180414/menen-engineering/file_sxskpr.jpg',
@@ -727,6 +758,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'Integrated compound featuring boutique hotel facilities coupled with a discreet private residence.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180534/menen-engineering/file_ezguij.jpg',
@@ -749,6 +781,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Structural Design & Stability Analysis.',
+    description: 'Sixteen-story structural frame engineered to European and local seismic code specifications.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180240/menen-engineering/file_k9ioov.jpg',
@@ -771,6 +804,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services with Supervision.',
+    description: 'Eight-story urban apartment structure providing optimized natural ventilation and efficient multi-unit floorplans.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791180167/menen-engineering/file_hmqqea.jpg',
@@ -793,6 +827,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design and Construction Supervision.',
+    description: 'High-density multi-ownership tower offering panoramic vistas across Addis Ababa with basement parking.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179380/menen-engineering/file_kesak6.jpg',
@@ -815,6 +850,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Interior Design and Supervision Coordination.',
+    description: 'High-volume civic interior layout designed for secure processing flows, acoustic clarity, and durability.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179233/menen-engineering/file_abrtuq.jpg',
@@ -837,6 +873,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa, Kazanchis',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design & Supervision Services.',
+    description: 'Twelve-story architectural solution designed for high density in the central business hub of Kazanchis.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791179502/menen-engineering/file_cqtuyi.jpg',
@@ -859,6 +896,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PERMIT_PROCESS',
     scopeOfWork: 'Complete Architectural & Engineering Design Services (Permit Process Completed).',
+    description: 'Modern residential tower with two-level underground parking and modular unit partitions.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008360/menen-engineering/haq3r343efvxitua7f6k.jpg',
@@ -881,6 +919,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural Review and Interior Design Package.',
+    description: 'Turnkey interior architecture featuring luxury finishing selections, custom lighting, and bespoke joinery.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008444/menen-engineering/apysq5umqqtpr1kpehqr.jpg',
@@ -903,6 +942,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'Complete Architectural & Engineering Design Services.',
+    description: 'High-density apartment building incorporating mezzanine commercial levels and rooftop terraces.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008516/menen-engineering/uv5khcysruhidztzctbo.jpg',
@@ -925,6 +965,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'DESIGN_PHASE',
     scopeOfWork: 'Complete Architectural Design Proposed Project.',
+    description: 'Modern boutique hotel design with mezzanine restaurant levels and guest lounges.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008696/menen-engineering/pogm6aey2y7ogwfp1kuq.jpg',
@@ -947,6 +988,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Addis Ababa',
     status: 'COMPLETED',
     scopeOfWork: 'Complete Architectural & Engineering Design Services & Construction Supervision.',
+    description: 'Comprehensive design and on-site supervision for a luxury suites hotel completed to international standards.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791008995/menen-engineering/zanpqwgiysfgfivlprxb.jpg',
@@ -969,6 +1011,7 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
     location: 'Jimma',
     status: 'COMPLETED',
     scopeOfWork: 'FULL Architectural Design Services.',
+    description: 'Multi-purpose diagnostic and community wellness building providing hygiene and outpatient access.',
     descriptionSteps: [
       {
         image: 'https://res.cloudinary.com/nytwathq/image/upload/v1791178756/menen-engineering/file_w9byb8.jpg',
@@ -987,9 +1030,9 @@ const INITIAL_42_PROJECTS: DynamicProject[] = [
 function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
   if (Array.isArray(project.descriptionSteps) && project.descriptionSteps.length > 0) {
     return project.descriptionSteps.map((step: any, idx: number) => ({
-      image: typeof step === 'string' ? step : step.imageUrl || step.image || project.featuredImage || '/images/menen-logo-original-colors.png',
-      caption: step.caption || `${project.title} · Perspective 0${idx + 1}`,
-      narrative: step.narrative || project.description || project.scopeOfWork || 'Full architectural and engineering consultancy.'
+      image: typeof step === 'string' ? step : step.imageUrl || step.image || '',
+      caption: step.caption || `${project.title} · Plate 0${idx + 1}`,
+      narrative: step.narrative || step.description || step.text || ''
     }));
   }
 
@@ -997,7 +1040,7 @@ function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
     return project.galleryImages.map((img: string, idx: number) => ({
       image: img,
       caption: `${project.title} · Perspective 0${idx + 1}`,
-      narrative: project.description || project.scopeOfWork || 'Comprehensive architectural, structural, and electro-mechanical design.'
+      narrative: project.description || project.scopeOfWork || ''
     }));
   }
 
@@ -1005,39 +1048,27 @@ function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
     {
       image: project.featuredImage || 'https://res.cloudinary.com/nytwathq/image/upload/v1791008097/menen-engineering/am4bvblsg6leitcejaxw.jpg',
       caption: project.title,
-      narrative: project.description || project.scopeOfWork || 'Category One Architectural & Engineering Consultancy Services.'
+      narrative: project.description || project.scopeOfWork || ''
     }
   ];
 }
 
 const MOTION_CSS = `
 @keyframes menenStepByStep25 {
-  0% {
-    transform: scale(0.68);
-    opacity: 0.25;
-  }
-  30% {
-    transform: scale(0.79);
-    opacity: 0.55;
-  }
-  60% {
-    transform: scale(0.89);
-    opacity: 0.8;
-  }
-  85% {
-    transform: scale(0.96);
-    opacity: 0.94;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0.78); opacity: 0.35; }
+  35% { transform: scale(0.86); opacity: 0.65; }
+  70% { transform: scale(0.94); opacity: 0.88; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .menen-luxury-open {
   animation: menenStepByStep25 2.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: center center;
   will-change: transform, opacity;
+}
+
+* {
+  border-radius: 0px !important;
 }
 `;
 
@@ -1084,13 +1115,28 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    const handleCategoryEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      const cat = customEvent.detail || '';
+      if (!cat) return;
+      const target = document.getElementById(`classification-${cat.toLowerCase().trim()}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
     const handleSearchEvent = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
       setSearchQuery(customEvent.detail || '');
     };
 
+    window.addEventListener('classification-select', handleCategoryEvent);
     window.addEventListener('classification-search', handleSearchEvent);
-    return () => window.removeEventListener('classification-search', handleSearchEvent);
+
+    return () => {
+      window.removeEventListener('classification-select', handleCategoryEvent);
+      window.removeEventListener('classification-search', handleSearchEvent);
+    };
   }, []);
 
   const handleOpenProject = (id: string) => {
@@ -1126,11 +1172,13 @@ export default function HomePage() {
   );
 
   return (
+    
     <main className="bg-white text-neutral-900 min-h-screen selection:bg-neutral-950 selection:text-white font-sans antialiased w-full relative">
       <style>{MOTION_CSS}</style>
       <OpeningLogoReveal />
+      
 
-      <section id="projects-archive" className="w-full py-2 sm:py-3 space-y-2 sm:space-y-3 text-center scroll-mt-20">
+      <section id="projects-archive" className="w-full py-2 sm:py-3 space-y-3 sm:space-y-4 text-center scroll-mt-20">
         {activeDisciplines.length === 0 && (
           <article className="py-12 space-y-2 font-mono text-center">
             <AlertCircle className="w-5 h-5 text-neutral-400 mx-auto" />
@@ -1154,7 +1202,7 @@ export default function HomePage() {
             <section
               key={discipline}
               id={`classification-${discipline.toLowerCase()}`}
-              className="scroll-mt-20 space-y-1.5 flex flex-col items-center w-full"
+              className="scroll-mt-20 space-y-2 flex flex-col items-center w-full"
             >
               <header className="w-full max-w-4xl px-4 space-y-1 text-center">
                 <nav className="flex items-center gap-3">
@@ -1164,12 +1212,12 @@ export default function HomePage() {
                   </span>
                   <span className="h-px flex-1 bg-gradient-to-l from-transparent to-neutral-200" />
                 </nav>
-                <h2 className="text-xl sm:text-2xl font-serif font-black tracking-[-0.02em] text-neutral-950 uppercase leading-none">
+                <h2 className="text-lg sm:text-2xl font-serif font-black tracking-[-0.02em] text-neutral-950 uppercase leading-none">
                   {discipline}
                 </h2>
               </header>
 
-              <section className="w-full space-y-1 flex flex-col items-center">
+              <section className="w-full space-y-2 flex flex-col items-center">
                 {matchedProjects.map((item) => {
                   const isExpanded = expandedProjectIds.has(item.id);
                   const isHovered = hoveredProjectId === item.id;
@@ -1177,6 +1225,7 @@ export default function HomePage() {
 
                   const plates = resolveDynamicPlates(item);
                   const heroThumbnail = plates[0]?.image || '/images/menen-logo-original-colors.png';
+                  const displayDesc = item.description || plates[0]?.narrative || item.scopeOfWork || '';
 
                   return (
                     <article 
@@ -1191,15 +1240,15 @@ export default function HomePage() {
                           onClick={() => handleOpenProject(item.id)}
                           onMouseEnter={() => setHoveredProjectId(item.id)}
                           onMouseLeave={() => setHoveredProjectId(null)}
-                          className={`w-full max-w-sm sm:max-w-md mx-auto px-4 py-1 flex flex-col items-center cursor-pointer group space-y-1 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
+                          className={`w-full max-w-[320px] sm:max-w-sm mx-auto px-2 py-1 flex flex-col items-center cursor-pointer group space-y-1.5 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
                             isHovered 
                               ? 'scale-[1.08] z-20' 
                               : hasHoverActive 
-                                ? 'scale-[0.72] opacity-45 blur-[0.2px]' 
+                                ? 'scale-[0.84] opacity-80' 
                                 : 'scale-100 opacity-100'
                           }`}
                         >
-                          <figure className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-950 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.3)] m-0">
+                          <figure className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-950 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.28)] m-0">
                             <img
                               src={heroThumbnail}
                               alt={item.title}
@@ -1209,24 +1258,30 @@ export default function HomePage() {
                             />
                             <span className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
                             {item.status && (
-                              <span className="absolute top-3 right-3 px-3 py-0.5 bg-white/90 backdrop-blur-md rounded-full font-mono text-[9px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm">
+                              <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/95 font-mono text-[8px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm">
                                 {item.status.replace(/_/g, ' ')}
                               </span>
                             )}
                           </figure>
 
-                          <footer className="space-y-0.5 px-2">
-                            <h3 className="text-sm sm:text-base font-serif font-bold tracking-tight text-neutral-950 group-hover:text-black transition-colors leading-tight">
+                          <footer className="space-y-1 px-1 text-center w-full">
+                            <h3 className="text-xs sm:text-sm font-serif font-bold tracking-tight text-neutral-950 group-hover:text-black transition-colors leading-tight">
                               {item.title}
                             </h3>
-                            <p className="text-[9px] font-mono uppercase tracking-[0.2em] text-neutral-400">
+                            <p className="text-[8px] font-mono uppercase tracking-[0.2em] text-neutral-400">
                               {item.location || 'Addis Ababa'}
                               {item.client && ` • Client: ${item.client}`}
                             </p>
+
+                            {displayDesc && (
+                              <p className="text-[10px] sm:text-[11px] font-serif italic text-neutral-600 line-clamp-2 max-w-xs mx-auto leading-tight mt-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                                &ldquo;{displayDesc}&rdquo;
+                              </p>
+                            )}
                           </footer>
                         </button>
                       ) : (
-                        <section className="menen-luxury-open w-full max-w-[96vw] xl:max-w-[92vw] mx-auto py-2 space-y-3">
+                        <section className="menen-luxury-open w-full max-w-[96vw] xl:max-w-[94vw] mx-auto py-2 space-y-3">
                           <header className="w-full px-4 sm:px-8 flex items-end justify-between gap-4 border-b border-neutral-100 pb-2 text-left">
                             <hgroup className="min-w-0">
                               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-400 block mb-0.5">
@@ -1241,7 +1296,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'left')}
-                                className="p-2 sm:p-2.5 rounded-full border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                                 aria-label="Previous Page"
                               >
                                 <ChevronLeft className="w-4 h-4" />
@@ -1249,7 +1304,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'right')}
-                                className="p-2 sm:p-2.5 rounded-full border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
                                 aria-label="Next Page"
                               >
                                 <ChevronRight className="w-4 h-4" />
@@ -1257,7 +1312,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleCloseProject(item.id)}
-                                className="p-2 sm:p-2.5 rounded-full bg-neutral-950 text-white hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-md"
+                                className="p-2 sm:p-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-md"
                                 aria-label="Close Project"
                               >
                                 <X className="w-4 h-4" />
@@ -1265,41 +1320,76 @@ export default function HomePage() {
                             </nav>
                           </header>
 
+                          {/* Dynamic Monograph Container */}
                           <section
                             ref={(el) => {
                               scrollContainerRefs.current[item.id] = el;
                             }}
-                            className="flex items-center gap-6 sm:gap-10 overflow-x-auto px-4 sm:px-8 py-1 pb-3 scroll-smooth w-full no-scrollbar snap-x snap-mandatory"
+                            className="flex items-center gap-8 sm:gap-12 overflow-x-auto px-4 sm:px-8 py-2 pb-4 scroll-smooth w-full no-scrollbar snap-x snap-mandatory"
                           >
-                            {plates.map((plate, plateIdx) => (
-                              <article
-                                key={plateIdx}
-                                className="w-[90vw] sm:w-[84vw] lg:w-[78vw] shrink-0 flex flex-col lg:flex-row items-center gap-4 sm:gap-8 text-left snap-center"
-                              >
-                                <img
-                                  src={plate.image}
-                                  alt={plate.caption}
-                                  className="w-full lg:w-3/5 aspect-[16/10] object-cover rounded-2xl shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] shrink-0"
-                                />
+                            {plates.map((plate, plateIdx) => {
+                              const hasImg = Boolean(plate.image && plate.image.trim() !== '');
+                              const hasText = Boolean(plate.narrative && plate.narrative.trim() !== '');
+                              const textLength = (plate.narrative || '').length;
 
-                                <article className="w-full lg:w-2/5 space-y-2.5">
-                                  <h4 className="text-xl sm:text-2xl font-serif font-black tracking-[-0.015em] text-neutral-950 leading-tight">
-                                    {plate.caption}
-                                  </h4>
-                                  <blockquote className="text-base sm:text-lg font-serif italic text-neutral-700 leading-relaxed border-l-2 border-neutral-950 pl-4 m-0">
-                                    &ldquo;{plate.narrative}&rdquo;
-                                  </blockquote>
-                                  {item.scopeOfWork && (
-                                    <p className="text-xs font-mono text-neutral-400 pt-2 border-t border-neutral-100">
-                                      Commission: {item.scopeOfWork}
-                                    </p>
+                              // Dynamic lateral expansion sizing based on text length:
+                              // If text is short: 380px -> up to 720px for lengthy descriptions so it widens horizontally instead of dropping down.
+                              const dynamicSideWidth = textLength > 350
+                                ? 'w-[520px] sm:w-[680px] lg:w-[760px]'
+                                : textLength > 180
+                                ? 'w-[420px] sm:w-[540px]'
+                                : 'w-[320px] sm:w-[420px]';
+
+                              return (
+                                <article
+                                  key={plateIdx}
+                                  className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]"
+                                >
+                                  {/* Plate Image (Rendered without extra line separation) */}
+                                  {hasImg && (
+                                    <figure className="m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+                                      <img
+                                        src={plate.image}
+                                        alt={plate.caption || item.title}
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </figure>
+                                  )}
+
+                                  {/* Text Box: Dynamically extends to the side on longer descriptions with no separating vertical border lines */}
+                                  {(hasText || plate.caption) && (
+                                    <article className={`shrink-0 flex flex-col justify-center space-y-3 ${hasImg ? dynamicSideWidth : 'w-[520px] sm:w-[720px]'}`}>
+                                      {plate.caption && (
+                                        <h4 className="text-lg sm:text-2xl font-serif font-black tracking-[-0.015em] text-neutral-950 leading-tight">
+                                          {plate.caption}
+                                        </h4>
+                                      )}
+
+                                      {/* No separating vertical border line; expands laterally across columns if long */}
+                                      {hasText && (
+                                        <p
+                                          className={`text-sm sm:text-base font-serif text-neutral-700 leading-relaxed m-0 text-justify ${
+                                            textLength > 300 ? 'columns-1 sm:columns-2 gap-6' : ''
+                                          }`}
+                                        >
+                                          {plate.narrative}
+                                        </p>
+                                      )}
+
+                                      {item.scopeOfWork && plateIdx === 0 && (
+                                        <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 pt-1">
+                                          Commission: {item.scopeOfWork}
+                                        </p>
+                                      )}
+                                    </article>
                                   )}
                                 </article>
-                              </article>
-                            ))}
+                              );
+                            })}
 
-                            <article className="w-[90vw] sm:w-[84vw] lg:w-[78vw] shrink-0 flex flex-col lg:flex-row items-center gap-4 sm:gap-8 text-left snap-center">
-                              <figure className="w-full lg:w-3/5 space-y-1.5 shrink-0 m-0">
+                            {/* Map & Spatial Coordinates Card */}
+                            <article className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]">
+                              <figure className="m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] flex flex-col space-y-1.5">
                                 <figcaption className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-neutral-500">
                                   <span className="flex items-center gap-1.5 text-neutral-900 font-bold">
                                     <MapPin className="w-3.5 h-3.5" /> Spatial Coordinates
@@ -1316,16 +1406,17 @@ export default function HomePage() {
                                   src={`https://maps.google.com/maps?q=${encodeURIComponent(
                                     item.mapCoordinates || item.location || 'Addis Ababa, Ethiopia'
                                   )}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                                  className="w-full h-64 sm:h-80 rounded-2xl shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700"
+                                  className="w-full flex-1 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700"
                                 />
                               </figure>
 
-                              <article className="w-full lg:w-2/5 space-y-3">
+                              {/* Leadership & Monograph Details */}
+                              <article className="w-[320px] sm:w-[400px] shrink-0 space-y-4">
                                 <h4 className="font-mono text-xs uppercase tracking-[0.25em] font-bold text-neutral-950 pb-1.5 border-b border-neutral-100">
                                   Project Leadership &amp; Credits
                                 </h4>
                                 
-                                <dl className="grid grid-cols-2 gap-2 font-mono m-0">
+                                <dl className="grid grid-cols-2 gap-3 font-mono m-0">
                                   {[
                                     ['Creative Director', item.creativeDirector || 'Arch. Samiel Musolino'],
                                     ['Partner In Charge', item.partnerInCharge || 'Eng. Habtamu Getu'],
@@ -1346,10 +1437,11 @@ export default function HomePage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCloseProject(item.id)}
-                                  className="w-full py-2.5 bg-neutral-950 text-white rounded-xl hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md"
+                                  className="w-full py-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md"
                                 >
                                   Close Monograph &uarr;
                                 </button>
+                                
                               </article>
                             </article>
                           </section>
@@ -1362,7 +1454,9 @@ export default function HomePage() {
             </section>
           );
         })}
+        
       </section>
+      <FloatingCeoDossier />
     </main>
   );
 }

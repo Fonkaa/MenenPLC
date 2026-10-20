@@ -109,22 +109,23 @@ model Project {
   scopeOfWork      String                @db.Text
   awards           String?
   description      String?               @db.Text
+  descriptionSteps Json?                 // <-- Added for multi-step narratives, plates & mixed-media
   featuredImage    String?
   galleryImages    String[]              @default([])
   featuredVideo    String?
   audioNarrative   String?
 
-  // Editorial Magazine Credits & Location Mapping
-  creativeDirector String                @default("Arch. Samiel Musolino")
-  partnerInCharge  String                @default("Eng. Habtamu Getu")
-  projectManager   String                @default("Arch. Ephrem")
-  projectTeam      String                @default("MENEN Architecture & Engineering Studio")
+creativeDirector String?               @default("Arch. Samiel Musolino")
+  partnerInCharge  String?               @default("Eng. Habtamu Getu")
+  projectManager   String?               @default("Arch. Ephrem")
+  projectTeam      String?               @default("MENEN Architecture & Engineering Studio")
   mapCoordinates   String?               @default("Addis Ababa, Ethiopia")
   
   order            Int                   @default(0)
   isFeatured       Boolean               @default(false)
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt
+
   @@index([category])
   @@index([order])
 }
