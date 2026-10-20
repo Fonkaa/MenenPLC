@@ -1067,7 +1067,11 @@ const MOTION_CSS = `
   will-change: transform, opacity;
 }
 
-* {
+/* Only images and project monograph plates remain sharp and flat */
+.project-card-thumb,
+.project-card-thumb img,
+.monograph-image,
+.monograph-image img {
   border-radius: 0px !important;
 }
 `;
@@ -1172,11 +1176,9 @@ export default function HomePage() {
   );
 
   return (
-    
     <main className="bg-white text-neutral-900 min-h-screen selection:bg-neutral-950 selection:text-white font-sans antialiased w-full relative">
       <style>{MOTION_CSS}</style>
       <OpeningLogoReveal />
-      
 
       <section id="projects-archive" className="w-full py-2 sm:py-3 space-y-3 sm:space-y-4 text-center scroll-mt-20">
         {activeDisciplines.length === 0 && (
@@ -1248,7 +1250,7 @@ export default function HomePage() {
                                 : 'scale-100 opacity-100'
                           }`}
                         >
-                          <figure className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-950 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.28)] m-0">
+                          <figure className="project-card-thumb relative w-full aspect-[16/10] overflow-hidden bg-neutral-950 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.28)] m-0">
                             <img
                               src={heroThumbnail}
                               alt={item.title}
@@ -1258,7 +1260,7 @@ export default function HomePage() {
                             />
                             <span className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
                             {item.status && (
-                              <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/95 font-mono text-[8px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm">
+                              <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/95 font-mono text-[8px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm rounded-sm">
                                 {item.status.replace(/_/g, ' ')}
                               </span>
                             )}
@@ -1296,7 +1298,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'left')}
-                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
                                 aria-label="Previous Page"
                               >
                                 <ChevronLeft className="w-4 h-4" />
@@ -1304,7 +1306,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'right')}
-                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-950 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
                                 aria-label="Next Page"
                               >
                                 <ChevronRight className="w-4 h-4" />
@@ -1312,7 +1314,7 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleCloseProject(item.id)}
-                                className="p-2 sm:p-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-md"
+                                className="p-2 sm:p-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-md rounded-xl"
                                 aria-label="Close Project"
                               >
                                 <X className="w-4 h-4" />
@@ -1332,8 +1334,6 @@ export default function HomePage() {
                               const hasText = Boolean(plate.narrative && plate.narrative.trim() !== '');
                               const textLength = (plate.narrative || '').length;
 
-                              // Dynamic lateral expansion sizing based on text length:
-                              // If text is short: 380px -> up to 720px for lengthy descriptions so it widens horizontally instead of dropping down.
                               const dynamicSideWidth = textLength > 350
                                 ? 'w-[520px] sm:w-[680px] lg:w-[760px]'
                                 : textLength > 180
@@ -1345,9 +1345,8 @@ export default function HomePage() {
                                   key={plateIdx}
                                   className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]"
                                 >
-                                  {/* Plate Image (Rendered without extra line separation) */}
                                   {hasImg && (
-                                    <figure className="m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+                                    <figure className="monograph-image m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
                                       <img
                                         src={plate.image}
                                         alt={plate.caption || item.title}
@@ -1356,7 +1355,6 @@ export default function HomePage() {
                                     </figure>
                                   )}
 
-                                  {/* Text Box: Dynamically extends to the side on longer descriptions with no separating vertical border lines */}
                                   {(hasText || plate.caption) && (
                                     <article className={`shrink-0 flex flex-col justify-center space-y-3 ${hasImg ? dynamicSideWidth : 'w-[520px] sm:w-[720px]'}`}>
                                       {plate.caption && (
@@ -1365,7 +1363,6 @@ export default function HomePage() {
                                         </h4>
                                       )}
 
-                                      {/* No separating vertical border line; expands laterally across columns if long */}
                                       {hasText && (
                                         <p
                                           className={`text-sm sm:text-base font-serif text-neutral-700 leading-relaxed m-0 text-justify ${
@@ -1389,8 +1386,8 @@ export default function HomePage() {
 
                             {/* Map & Spatial Coordinates Card */}
                             <article className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]">
-                              <figure className="m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] flex flex-col space-y-1.5">
-                                <figcaption className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-neutral-500">
+                              <figure className="m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] flex flex-col space-y-1.5 rounded-2xl overflow-hidden bg-neutral-100 p-2 shadow-sm">
+                                <figcaption className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-neutral-500 px-1">
                                   <span className="flex items-center gap-1.5 text-neutral-900 font-bold">
                                     <MapPin className="w-3.5 h-3.5" /> Spatial Coordinates
                                   </span>
@@ -1406,7 +1403,7 @@ export default function HomePage() {
                                   src={`https://maps.google.com/maps?q=${encodeURIComponent(
                                     item.mapCoordinates || item.location || 'Addis Ababa, Ethiopia'
                                   )}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                                  className="w-full flex-1 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700"
+                                  className="w-full flex-1 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700 rounded-xl"
                                 />
                               </figure>
 
@@ -1437,11 +1434,10 @@ export default function HomePage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCloseProject(item.id)}
-                                  className="w-full py-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md"
+                                  className="w-full py-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md rounded-xl"
                                 >
                                   Close Monograph &uarr;
                                 </button>
-                                
                               </article>
                             </article>
                           </section>
@@ -1454,7 +1450,6 @@ export default function HomePage() {
             </section>
           );
         })}
-        
       </section>
       <FloatingCeoDossier />
     </main>
