@@ -1,0 +1,149 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// -------------------------------------------------------------
+// 1. SITE-WIDE SETTINGS (Clean Monochrome Editorial Palette)
+// -------------------------------------------------------------
+model SiteConfig {
+  id             String   @id @default("global_config")
+  companyName    String   @default("MENEN Engineering PLC")
+  legalCategory  String   @default("Category One Architectural & Engineering Firm")
+  motto          String   @default("It's all about commitment!")
+  primaryPhone   String   @default("+251 920 517 606")
+  secondaryPhone String   @default("+251 913 034 623")
+  primaryEmail   String   @default("habtamuengr@gmail.com")
+  officeAddress  String   @default("Wello Sefer, behind Garad Mall, GS Building, 2nd Floor Office @ Menen Engineering PLC, Addis Ababa, Ethiopia")
+  updatedAt      DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 2. 100% DYNAMIC TEXT CMS
+// -------------------------------------------------------------
+model DynamicContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  section   String
+  label     String
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 3. ADMIN AUTHENTICATION
+// -------------------------------------------------------------
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 4. LEADERSHIP & TEAM
+// -------------------------------------------------------------
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  roleTitle   String
+  department  String
+  credentials String
+  bio         String   @db.Text
+  avatarUrl   String?
+  linkedinUrl String?
+  email       String?
+  phone       String?
+  isExecutive Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 5. 14 DOCUMENT CLASSIFICATIONS & CREDITED MAGAZINE DOSSIER
+// -------------------------------------------------------------
+enum ProjectClassification {
+  Architecture
+  Culture
+  Education
+  Work
+  Hospitality
+  Residential
+  Infrastructure
+  Space
+  Sports
+  Health
+  Interiors
+  Landscape
+  Planning
+  Product
+}
+
+enum ProjectStatus {
+  COMPLETED
+  UNDER_CONSTRUCTION
+  DESIGN_PHASE
+  DESIGN_PERMIT_PROCESS
+  LAND_ACQUISITION_PROCESS
+  BOQ_AND_TENDER
+  PROPOSAL
+}
+
+model Project {
+  id               String                @id @default(cuid())
+  slug             String                @unique
+  title            String
+  client           String
+  associatedFirms  String                @default("MENEN Engineering PLC")
+  location         String                @default("Addis Ababa")
+  category         ProjectClassification @default(Architecture)
+  status           ProjectStatus         @default(UNDER_CONSTRUCTION)
+  scopeOfWork      String                @db.Text
+  awards           String?
+  description      String?               @db.Text
+  featuredImage    String?
+  galleryImages    String[]              @default([])
+  featuredVideo    String?
+  audioNarrative   String?
+
+  // Editorial Magazine Credits & Location Mapping
+  creativeDirector String                @default("Arch. Samiel Musolino")
+  partnerInCharge  String                @default("Eng. Habtamu Getu")
+  projectManager   String                @default("Arch. Ephrem")
+  projectTeam      String                @default("MENEN Architecture & Engineering Studio")
+  mapCoordinates   String?               @default("Addis Ababa, Ethiopia")
+  
+  order            Int                   @default(0)
+  isFeatured       Boolean               @default(false)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  @@index([category])
+  @@index([order])
+}
+
+// -------------------------------------------------------------
+// 6. CLIENT PROJECT BRIEF SUBMISSIONS
+// -------------------------------------------------------------
+model ProjectInquiry {
+  id             String   @id @default(cuid())
+  fullName       String
+  organization   String?
+  email          String
+  phone          String
+  projectType    String
+  location       String?
+  plotSize       String?
+  scope          String   @db.Text
+  referenceVideo String?
+  referenceAudio String?
+  status         String   @default("PENDING")
+  createdAt      DateTime @default(now())
+}
