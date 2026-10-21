@@ -32,11 +32,11 @@ export const KNOWLEDGE_BASE: DossierTopic[] = [
     response: `Eng. Habtamu earned his Master of Science (MSc) in **Structural Design & Construction Project Management** from **Chalmers University of Technology** in Gothenburg, Sweden (2017–2019).
 
 His specialized European postgraduate curriculum included:
-- **Non-linear Concrete Modeling:** Finite element analysis of cracking, strain-hardening, and plasticity.
-- **Timber & Engineered Wood:** Modern high-capacity mass-timber connections and multi-story wood frames.
-- **Prestressed & Post-Tensioned Concrete:** Long-span transfer slabs, precast bridge beams, and deflection control.
-- **Advanced Steel Structures & Bridges:** Fatigue, stability, and aeroelastic wind effects.
-- **Project Economics & Delivery:** Real Estate Finance, FIDIC/PPA Contract Law, and Lean Construction Supply Chain Management.`
+- Non-linear Concrete Modeling: Finite element analysis of cracking, strain-hardening, and plasticity.
+- Timber & Engineered Wood: Modern high-capacity mass-timber connections and multi-story wood frames.
+- Prestressed & Post-Tensioned Concrete: Long-span transfer slabs, precast bridge beams, and deflection control.
+- Advanced Steel Structures & Bridges: Fatigue, stability, and aeroelastic wind effects.
+- Project Economics & Delivery: Real Estate Finance, FIDIC/PPA Contract Law, and Lean Construction Supply Chain Management.`
   },
 
   // 2. Education - Università degli Studi di Messina
@@ -48,9 +48,9 @@ His specialized European postgraduate curriculum included:
     response: `In 2018, Eng. Habtamu completed an advanced **Seismic Structural Safety (SSS)** certification at **Università degli Studi di Messina** in Italy.
 
 The certification focused on Eurocode 8 earthquake engineering protocols:
-- **Site-Specific Response Spectra:** Dynamic soil-structure interaction and local peak ground acceleration (PGA).
-- **Vibration Mitigation Devices:** Base isolation bearing design, elastomeric elastomeric dampers, and Tuned Mass Dampers (TMD) for high-rise wind/earthquake oscillation.
-- **Collapse Limit State Analysis:** Non-linear pushover simulations for existing masonry and reinforced concrete structures.`
+- Site-Specific Response Spectra: Dynamic soil-structure interaction and local peak ground acceleration (PGA).
+- Vibration Mitigation Devices: Base isolation bearing design, elastomeric elastomeric dampers, and Tuned Mass Dampers (TMD) for high-rise wind/earthquake oscillation.
+- Collapse Limit State Analysis: Non-linear pushover simulations for existing masonry and reinforced concrete structures.`
   },
 
   // 3. Education - AAiT Master Thesis
@@ -62,7 +62,7 @@ The certification focused on Eurocode 8 earthquake engineering protocols:
     response: `Eng. Habtamu completed his first Master of Science (MSc) in **Structural Engineering** at the **Addis Ababa Institute of Technology (AAiT)**, Addis Ababa University (2015–2017).
 
 His Master's thesis was titled:
-*"Study of Steel I-Beam with Trapezoidal Corrugated Web vs. Flat Web for Lateral Torsional Buckling (LTB) using Linear and Non-linear Finite Element Analysis."*
+"Study of Steel I-Beam with Trapezoidal Corrugated Web vs. Flat Web for Lateral Torsional Buckling (LTB) using Linear and Non-linear Finite Element Analysis."*
 
 The research demonstrated that trapezoidal corrugations in steel beam webs eliminate shear stiffeners and increase buckling resistance by over 30%, significantly reducing structural steel tonnage in industrial warehouses, stadium roofs, and bridge spans.`
   },
@@ -100,9 +100,9 @@ The training covered short-span and long-span pedestrian trail bridge design sta
     keywords: ['fasil', 'giorghis', 'conservation', 'heritage', 'national palace', 'jubilee', 'palace', 'trinity', 'cathedral', 'aba jiffar'],
     response: `From 2014 to 2017, Eng. Habtamu practiced as Structural Engineer with renowned conservation architect **Fasil Giorghis Consult**, directing structural investigations, diagnostic monitoring, and restoration packages for Ethiopia's foremost historic sites:
 
-1. **National Jubilee Palace (Addis Ababa):** Structural integrity assessments of royal chambers, state halls, and subgrade foundations.
-2. **Holy Trinity Cathedral (Kidist Selassie):** Masonry vault analysis, cracked stone archway rehabilitation, and roof truss consolidation.
-3. **Jimma Aba Jiffar Palace (Jimma):** Structural wood preservation, traditional joinery retrofitting, and indigenous timber stabilization for the 19th-century royal compound.`
+1. National Jubilee Palace (Addis Ababa): Structural integrity assessments of royal chambers, state halls, and subgrade foundations.
+2. Holy Trinity Cathedral (Kidist Selassie): Masonry vault analysis, cracked stone archway rehabilitation, and roof truss consolidation.
+3. Jimma Aba Jiffar Palace (Jimma): Structural wood preservation, traditional joinery retrofitting, and indigenous timber stabilization for the 19th-century royal compound.`
   },
 
   // 7. National Palace Visitors Reception Pavilion
@@ -124,10 +124,10 @@ The project balanced high-security diplomatic entry requirements with historic a
     keywords: ['kk', 'kk plc', '23', 'tower', 'high rise', 'first prize', 'award', 'schematic', 'basement', 'mxd'],
     response: `The **4B+G+M+23 Mixed-Use Tower** for KK PLC / KANMAX is a flagship high-rise awarded **1st Prize** in a nationwide architectural competition:
 
-- **Height & Floors:** 4 Basements + Ground + Mezzanine + 23 Superstructure Floors.
-- **Deep Excavation:** A 16-meter deep subterranean excavation secured with continuous soldier piles and prestressed ground anchors.
-- **Lateral Force-Resisting System:** Dual core-wall and special moment-resisting frame (SMRF) designed under Eurocode 8 / ES EN 1998 standards for severe seismic and high wind conditions.
-- **Services:** Integrated automated multi-level parking, mixed retail, and Class-A commercial headquarters.`
+- Height & Floors: 4 Basements + Ground + Mezzanine + 23 Superstructure Floors.
+- Deep Excavation: A 16-meter deep subterranean excavation secured with continuous soldier piles and prestressed ground anchors.
+- Lateral Force-Resisting System: Dual core-wall and special moment-resisting frame (SMRF) designed under Eurocode 8 / ES EN 1998 standards for severe seismic and high wind conditions.
+- Services: Integrated automated multi-level parking, mixed retail, and Class-A commercial headquarters.`
   },
 
   // 9. Bullaleas 3B+G+22 Apartment Tower
@@ -138,9 +138,9 @@ The project balanced high-security diplomatic entry requirements with historic a
     keywords: ['bullaleas', 'apartment', '22', 'luxury', 'residential', 'slab', 'flat slab', 'subterranean'],
     response: `The **3B+G+22 Bullaleas Residential Tower** represents one of Addis Ababa's premier luxury high-rises:
 
-- **Structural Scheme:** Cast-in-place post-tensioned / flat-slab framing to maximize clear ceiling heights and eliminate downstand beams in residential suites.
-- **Foundation System:** Heavy reinforced concrete raft foundation keyed into deep volcanic bedrock with subterranean waterproofing membranes across 3 basement levels.
-- **Acoustic & Vibration Isolation:** Vibration-damped mechanical plant isolation floors to prevent elevator and generator noise from penetrating residential suites.`
+- Structural Scheme: Cast-in-place post-tensioned / flat-slab framing to maximize clear ceiling heights and eliminate downstand beams in residential suites.
+- Foundation System: Heavy reinforced concrete raft foundation keyed into deep volcanic bedrock with subterranean waterproofing membranes across 3 basement levels.
+- Acoustic & Vibration Isolation: Vibration-damped mechanical plant isolation floors to prevent elevator and generator noise from penetrating residential suites.`
   },
 
   // 10. 8 Lakeside Towers Masterplan (Bahir Dar)
@@ -149,11 +149,11 @@ The project balanced high-security diplomatic entry requirements with historic a
     category: 'Signature Projects',
     question: 'What is the scale of the 8 Towers Lakeside Masterplan in Bahir Dar?',
     keywords: ['bahir dar', 'lakeside', 'lake tana', '8 towers', 'tana', 'masterplan', '15 floors', 'waterfront'],
-    response: `The **Bahir Dar Lakeside Masterplan** is an expansive waterfront development featuring **eight interconnected 15-story residential and hospitality towers** overlooking Lake Tana:
+    response: `The Bahir Dar Lakeside Masterplan is an expansive waterfront development featuring **eight interconnected 15-story residential and hospitality towers** overlooking Lake Tana:
 
-- **Total Built Area:** Over 120,000 square meters.
-- **Geotechnical Solution:** Driven displacement piles and continuous perimeter sheet-piling to counter the high hydrostatic pressure and soft alluvial clay strata adjacent to the lake.
-- **Environmental Design:** Wind-tunnel analyzed airflow corridors allowing natural convective cooling off Lake Tana, reducing HVAC loads by over 25%.`
+- Total Built Area: Over 120,000 square meters.
+- Geotechnical Solution: Driven displacement piles and continuous perimeter sheet-piling to counter the high hydrostatic pressure and soft alluvial clay strata adjacent to the lake.
+- Environmental Design: Wind-tunnel analyzed airflow corridors allowing natural convective cooling off Lake Tana, reducing HVAC loads by over 25%.`
   },
 
   // 11. Modular Border Clearance Stations
@@ -178,11 +178,11 @@ Key design criteria included:
     keywords: ['software', 'etabs', 'sap2000', 'tekla', 'abaqus', 'safe', 'diana', 'matlab', 'autocad', 'tools', 'fem'],
     response: `Eng. Habtamu applies industry-standard structural simulation and BIM suites:
 
-- **High-Rise & Seismic Analysis:** CSI ETABS (P-Delta, modal response spectrum, non-linear time history).
-- **Bridge & General FEA:** CSI SAP2000, CSICOL (biaxial column interaction).
-- **Non-Linear Continuum Modeling:** Abaqus FEA & DIANA FEA for complex fracture mechanics, dynamic soil-structure interaction, and concrete plasticity.
-- **Foundation & Mat Footings:** CSI SAFE (raft foundation deflections and punching shear).
-- **BIM & Rebar Detailing:** Tekla Structural Designer, Revit Structure, AutoCAD.`
+- High-Rise & Seismic Analysis: CSI ETABS (P-Delta, modal response spectrum, non-linear time history).
+- Bridge & General FEA: CSI SAP2000, CSICOL (biaxial column interaction).
+- Non-Linear Continuum Modeling: Abaqus FEA & DIANA FEA for complex fracture mechanics, dynamic soil-structure interaction, and concrete plasticity.
+- Foundation & Mat Footings: CSI SAFE (raft foundation deflections and punching shear).
+- BIM & Rebar Detailing: Tekla Structural Designer, Revit Structure, AutoCAD.`
   },
 
   // 13. Deep Excavation & Shoring

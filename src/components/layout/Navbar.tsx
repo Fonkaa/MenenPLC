@@ -15,7 +15,10 @@ import {
   Send, 
   MessageSquare,
   Sparkles,
-  Layers
+  Layers,
+  ChevronDown,
+  ChevronUp,
+  Info
 } from 'lucide-react';
 
 export const CLASSIFICATIONS_ROW_1 = [
@@ -55,6 +58,7 @@ export default function Navbar({
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -152,7 +156,6 @@ export default function Navbar({
       >
         <div className="max-w-[112rem] mx-auto px-4 sm:px-8 h-20 sm:h-24 flex items-center justify-between gap-3 sm:gap-6">
           
-          {/* Left: Menu Button & Logo */}
           <div className="flex items-center gap-3 sm:gap-5 shrink-0">
             <button
               type="button"
@@ -178,7 +181,6 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* Center Desktop Classifications */}
           <nav className="hidden lg:flex flex-col items-center justify-center gap-2 my-auto px-2 select-none">
             <div className="flex items-center gap-6 xl:gap-8 text-[11px] font-serif uppercase tracking-[0.14em]">
               {CLASSIFICATIONS_ROW_1.map((item) => (
@@ -209,7 +211,6 @@ export default function Navbar({
             </div>
           </nav>
 
-          {/* Right: Search Pill */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <div className="flex items-center gap-2.5 border border-neutral-300 hover:border-neutral-400 focus-within:border-neutral-950 px-4 py-2 bg-neutral-50 transition-colors duration-200 w-36 sm:w-60 md:w-68 rounded-full shadow-2xs">
               <Search className="w-3.5 h-3.5 text-neutral-400 shrink-0 pointer-events-none" />
@@ -279,9 +280,9 @@ export default function Navbar({
             </button>
           </div>
 
-          <div className="p-6 space-y-8 flex-1 bg-white">
+          <div className="p-6 space-y-6 flex-1 bg-white">
             {/* Primary Nav Links */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               <span className="text-[10px] uppercase text-neutral-400 tracking-[0.3em] block border-b border-neutral-100 pb-2">
                 Navigation
               </span>
@@ -296,6 +297,54 @@ export default function Navbar({
                   </span>
                   <span className="text-neutral-400 group-hover:text-neutral-950 transition-colors">&rarr;</span>
                 </button>
+
+                {/* About Page Link pointing to src/app/about */}
+                <Link
+                  href="/about"
+                  onClick={() => setSidebarOpen(false)}
+                  className="group flex items-center justify-between py-3 text-neutral-600 hover:text-neutral-950 font-mono text-xs uppercase tracking-[0.12em] cursor-pointer transition-colors"
+                >
+                  <span className="flex items-center gap-3 group-hover:translate-x-1 transition-transform duration-200">
+                    <Info className="w-4 h-4 text-neutral-500" /> About Firm
+                  </span>
+                  <span className="text-neutral-400 group-hover:text-neutral-950 transition-colors">&rarr;</span>
+                </Link>
+
+                {/* Collapsible Project Categories Accordion */}
+                <div className="py-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setCategoriesOpen(!categoriesOpen)}
+                    className="w-full flex items-center justify-between text-neutral-950 font-mono text-xs uppercase tracking-[0.12em] cursor-pointer bg-transparent border-none text-left py-1.5"
+                  >
+                    <span className="flex items-center gap-3">
+                      <Layers className="w-4 h-4 text-neutral-500" /> Project Categories
+                    </span>
+                    {categoriesOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  </button>
+
+                  {/* Dropdown list of 14 classifications */}
+                  {categoriesOpen && (
+                    <div className="grid grid-cols-2 gap-2 mt-3 pl-2 pt-1 pb-2 border-l border-neutral-200 animate-in fade-in duration-200">
+                      {ALL_CLASSIFICATIONS.map((cat, idx) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => handleCategoryNavigation(cat)}
+                          className="p-2.5 text-left border border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50 transition-colors duration-200 group cursor-pointer bg-white rounded-xl shadow-2xs"
+                        >
+                          <span className="text-[9px] tracking-[0.2em] text-neutral-400 group-hover:text-neutral-600 block">
+                            {String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <strong className="font-serif uppercase tracking-[0.12em] text-[10px] block truncate mt-0.5 text-neutral-900">
+                            {cat}
+                          </strong>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
                 <Link
                   href="/team"
                   onClick={() => setSidebarOpen(false)}
@@ -329,31 +378,7 @@ export default function Navbar({
               </nav>
             </div>
 
-            {/* Disciplines Grid with rounded-xl tiles */}
-            <div className="space-y-3">
-              <span className="text-[10px] uppercase text-neutral-400 tracking-[0.3em] flex items-center gap-1.5 border-b border-neutral-100 pb-2">
-                <Layers className="w-3.5 h-3.5" /> 14 Architectural Disciplines
-              </span>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                {ALL_CLASSIFICATIONS.map((cat, idx) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => handleCategoryNavigation(cat)}
-                    className="p-3 text-left border border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50 transition-colors duration-200 group cursor-pointer bg-white rounded-xl shadow-2xs"
-                  >
-                    <span className="text-[9px] tracking-[0.2em] text-neutral-400 group-hover:text-neutral-600 block">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <strong className="font-serif uppercase tracking-[0.12em] text-[11px] block truncate mt-0.5 text-neutral-900">
-                      {cat}
-                    </strong>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Commission Card with rounded-2xl */}
+            {/* Commission Card */}
             <div className="p-4 bg-neutral-50 border border-neutral-200 space-y-2.5 rounded-2xl shadow-2xs">
               <div className="flex items-center gap-2 text-xs font-bold text-neutral-950 uppercase tracking-[0.15em] font-mono">
                 <Sparkles className="w-3.5 h-3.5 text-neutral-800" /> Category One Firm

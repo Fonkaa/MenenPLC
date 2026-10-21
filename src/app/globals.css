@@ -268,3 +268,26 @@ h1, h2, h3, h4, h5, h6 {
 .pause-spin {
   animation-play-state: paused;
 }
+
+/* -------------------------------------------------------------
+   8. MOBILE ARCHIVE STACK OVERRIDES (Matching exact preview layout)
+   ------------------------------------------------------------- */
+@media (max-width: 640px) {
+  #projects-archive {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  #projects-archive section[id^="classification-"] {
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Compact narrow centered stack matching sequential screenshot layout */
+  #projects-archive article {
+    width: 100% !important;
+    max-width: 210px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
