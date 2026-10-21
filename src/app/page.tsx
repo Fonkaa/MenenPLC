@@ -1074,6 +1074,17 @@ const MOTION_CSS = `
 .monograph-image img {
   border-radius: 0px !important;
 }
+
+/* On mobile, expanded detail container spans full width starting from the far-left edge with 5px padding */
+@media (max-width: 640px) {
+  .menen-luxury-open {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+}
 `;
 
 export default function HomePage() {
@@ -1242,9 +1253,9 @@ export default function HomePage() {
                           onClick={() => handleOpenProject(item.id)}
                           onMouseEnter={() => setHoveredProjectId(item.id)}
                           onMouseLeave={() => setHoveredProjectId(null)}
-                          className={`w-full max-w-[240px] sm:max-w-sm mx-auto px-1.5 py-1 flex flex-col items-center cursor-pointer group space-y-1.5 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
+                          className={`w-full max-w-[320px] sm:max-w-sm mx-auto px-2 py-1 flex flex-col items-center cursor-pointer group space-y-1.5 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
                             isHovered 
-                              ? 'scale-[1.06] z-20' 
+                              ? 'scale-[1.08] z-20' 
                               : hasHoverActive 
                                 ? 'scale-[0.84] opacity-80' 
                                 : 'scale-100 opacity-100'
@@ -1260,7 +1271,7 @@ export default function HomePage() {
                             />
                             <span className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
                             {item.status && (
-                              <span className="absolute top-2 right-2 px-2 py-0.5 bg-white/95 font-mono text-[7px] uppercase tracking-[0.16em] font-semibold text-neutral-900 shadow-xs rounded-sm">
+                              <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/95 font-mono text-[8px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm rounded-sm">
                                 {item.status.replace(/_/g, ' ')}
                               </span>
                             )}
@@ -1284,12 +1295,12 @@ export default function HomePage() {
                         </button>
                       ) : (
                         <section className="menen-luxury-open w-full max-w-[96vw] xl:max-w-[94vw] mx-auto py-2 space-y-3">
-                          <header className="w-full px-4 sm:px-8 flex items-end justify-between gap-4 border-b border-neutral-100 pb-2 text-left">
+                          <header className="w-full px-2 sm:px-8 flex items-end justify-between gap-4 border-b border-neutral-100 pb-2 text-left">
                             <hgroup className="min-w-0">
                               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-400 block mb-0.5">
                                 {item.category} • {item.location || 'Ethiopia'}
                               </span>
-                              <h3 className="text-2xl sm:text-4xl font-serif font-black tracking-[-0.02em] text-neutral-950 leading-tight truncate">
+                              <h3 className="text-xl sm:text-4xl font-serif font-black tracking-[-0.02em] text-neutral-950 leading-tight truncate">
                                 {item.title}
                               </h3>
                             </hgroup>
@@ -1322,31 +1333,24 @@ export default function HomePage() {
                             </nav>
                           </header>
 
-                          {/* Dynamic Monograph Container */}
+                          {/* Dynamic Monograph Container: Side-by-side sliding layout matching magazine format on both mobile and PC */}
                           <section
                             ref={(el) => {
                               scrollContainerRefs.current[item.id] = el;
                             }}
-                            className="flex items-center gap-8 sm:gap-12 overflow-x-auto px-4 sm:px-8 py-2 pb-4 scroll-smooth w-full no-scrollbar snap-x snap-mandatory"
+                            className="flex flex-row items-center gap-6 sm:gap-12 overflow-x-auto px-[5px] sm:px-8 py-2 pb-4 scroll-smooth w-full no-scrollbar"
                           >
                             {plates.map((plate, plateIdx) => {
                               const hasImg = Boolean(plate.image && plate.image.trim() !== '');
                               const hasText = Boolean(plate.narrative && plate.narrative.trim() !== '');
-                              const textLength = (plate.narrative || '').length;
-
-                              const dynamicSideWidth = textLength > 350
-                                ? 'w-[520px] sm:w-[680px] lg:w-[760px]'
-                                : textLength > 180
-                                ? 'w-[420px] sm:w-[540px]'
-                                : 'w-[320px] sm:w-[420px]';
 
                               return (
                                 <article
                                   key={plateIdx}
-                                  className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]"
+                                  className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left h-full max-h-[85vh]"
                                 >
                                   {hasImg && (
-                                    <figure className="monograph-image m-0 shrink-0 h-[48vh] sm:h-[58vh] max-h-[580px] aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+                                    <figure className="monograph-image m-0 shrink-0 h-[42vh] sm:h-[58vh] max-h-[580px] w-[88vw] sm:w-auto aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
                                       <img
                                         src={plate.image}
                                         alt={plate.caption || item.title}
@@ -1356,7 +1360,7 @@ export default function HomePage() {
                                   )}
 
                                   {(hasText || plate.caption) && (
-                                    <article className={`shrink-0 flex flex-col justify-center space-y-3 ${hasImg ? dynamicSideWidth : 'w-[520px] sm:w-[720px]'}`}>
+                                    <article className="shrink-0 flex flex-col justify-center space-y-3 w-[88vw] sm:w-[540px] lg:w-[680px]">
                                       {plate.caption && (
                                         <h4 className="text-lg sm:text-2xl font-serif font-black tracking-[-0.015em] text-neutral-950 leading-tight">
                                           {plate.caption}
@@ -1364,11 +1368,7 @@ export default function HomePage() {
                                       )}
 
                                       {hasText && (
-                                        <p
-                                          className={`text-sm sm:text-base font-serif text-neutral-700 leading-relaxed m-0 text-justify ${
-                                            textLength > 300 ? 'columns-1 sm:columns-2 gap-6' : ''
-                                          }`}
-                                        >
+                                        <p className="text-xs sm:text-base font-serif text-neutral-700 leading-relaxed m-0 text-justify">
                                           {plate.narrative}
                                         </p>
                                       )}
@@ -1384,12 +1384,12 @@ export default function HomePage() {
                               );
                             })}
 
-                            {/* Map & Spatial Coordinates Card (Increased size on mobile & desktop) */}
-                            <article className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left snap-center h-full max-h-[85vh]">
-                              <figure className="m-0 shrink-0 h-[62vh] sm:h-[68vh] max-h-[680px] w-[85vw] sm:w-[580px] lg:w-[680px] aspect-[16/11] flex flex-col space-y-2 rounded-2xl overflow-hidden bg-neutral-100 p-2.5 shadow-md">
-                                <figcaption className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-neutral-600 px-1">
-                                  <span className="flex items-center gap-1.5 text-neutral-950 font-bold">
-                                    <MapPin className="w-4 h-4 text-neutral-900" /> Spatial Coordinates
+                            {/* Map & Spatial Coordinates Card sliding horizontally side-by-side */}
+                            <article className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left h-full max-h-[85vh]">
+                              <figure className="m-0 shrink-0 h-[42vh] sm:h-[58vh] max-h-[580px] w-[88vw] sm:w-[580px] aspect-[16/10] flex flex-col space-y-1.5 rounded-2xl overflow-hidden bg-neutral-100 p-2 shadow-sm">
+                                <figcaption className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-neutral-500 px-1">
+                                  <span className="flex items-center gap-1.5 text-neutral-900 font-bold">
+                                    <MapPin className="w-3.5 h-3.5" /> Spatial Coordinates
                                   </span>
                                   <span>{item.mapCoordinates || item.location || 'Addis Ababa, Ethiopia'}</span>
                                 </figcaption>
@@ -1408,7 +1408,7 @@ export default function HomePage() {
                               </figure>
 
                               {/* Leadership & Monograph Details */}
-                              <article className="w-[320px] sm:w-[400px] shrink-0 space-y-4">
+                              <article className="w-[85vw] sm:w-[400px] shrink-0 space-y-4">
                                 <h4 className="font-mono text-xs uppercase tracking-[0.25em] font-bold text-neutral-950 pb-1.5 border-b border-neutral-100">
                                   Project Leadership &amp; Credits
                                 </h4>
