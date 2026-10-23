@@ -1031,7 +1031,7 @@ function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
   if (Array.isArray(project.descriptionSteps) && project.descriptionSteps.length > 0) {
     return project.descriptionSteps.map((step: any, idx: number) => ({
       image: typeof step === 'string' ? step : step.imageUrl || step.image || '',
-      caption: step.caption || `${project.title} · Plate 0${idx + 1}`,
+      caption: '',
       narrative: step.narrative || step.description || step.text || ''
     }));
   }
@@ -1039,7 +1039,7 @@ function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
   if (Array.isArray(project.galleryImages) && project.galleryImages.length > 0) {
     return project.galleryImages.map((img: string, idx: number) => ({
       image: img,
-      caption: `${project.title} · Perspective 0${idx + 1}`,
+      caption: '',
       narrative: project.description || project.scopeOfWork || ''
     }));
   }
@@ -1047,7 +1047,7 @@ function resolveDynamicPlates(project: DynamicProject): ProjectPlate[] {
   return [
     {
       image: project.featuredImage || 'https://res.cloudinary.com/nytwathq/image/upload/v1791008097/menen-engineering/am4bvblsg6leitcejaxw.jpg',
-      caption: project.title,
+      caption: '',
       narrative: project.description || project.scopeOfWork || ''
     }
   ];
@@ -1075,14 +1075,32 @@ const MOTION_CSS = `
   border-radius: 0px !important;
 }
 
-/* On mobile, expanded detail container spans full width starting from the far-left edge with 5px padding */
+/* Mobile-only layout styling */
 @media (max-width: 640px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  .project-card-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    box-sizing: border-box !important;
+  }
   .menen-luxury-open {
     width: 100vw !important;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    box-sizing: border-box !important;
+  }
+  .mobile-map-card {
+    display: none !important;
   }
 }
 `;
@@ -1174,7 +1192,7 @@ export default function HomePage() {
   const handleScrollSide = (projectId: string, direction: 'left' | 'right') => {
     const el = scrollContainerRefs.current[projectId];
     if (el) {
-      const scrollAmount = window.innerWidth * 0.9;
+      const scrollAmount = el.clientWidth * 0.95;
       el.scrollBy({
         left: direction === 'right' ? scrollAmount : -scrollAmount,
         behavior: 'smooth',
@@ -1187,11 +1205,11 @@ export default function HomePage() {
   );
 
   return (
-    <main className="bg-white text-neutral-900 min-h-screen selection:bg-neutral-950 selection:text-white font-sans antialiased w-full relative">
+    <main className="bg-white text-neutral-900 min-h-screen selection:bg-neutral-950 selection:text-white font-sans antialiased w-full relative overflow-x-hidden">
       <style>{MOTION_CSS}</style>
       <OpeningLogoReveal />
 
-      <section id="projects-archive" className="w-full py-2 sm:py-3 space-y-3 sm:space-y-4 text-center scroll-mt-20">
+      <section id="projects-archive" className="w-full py-2 sm:py-3 space-y-4 sm:space-y-6 text-center scroll-mt-20">
         {activeDisciplines.length === 0 && (
           <article className="py-12 space-y-2 font-mono text-center">
             <AlertCircle className="w-5 h-5 text-neutral-400 mx-auto" />
@@ -1215,7 +1233,7 @@ export default function HomePage() {
             <section
               key={discipline}
               id={`classification-${discipline.toLowerCase()}`}
-              className="scroll-mt-20 space-y-2 flex flex-col items-center w-full"
+              className="scroll-mt-20 space-y-3 flex flex-col items-center w-full"
             >
               <header className="w-full max-w-4xl px-4 space-y-1 text-center">
                 <nav className="flex items-center gap-3">
@@ -1230,7 +1248,7 @@ export default function HomePage() {
                 </h2>
               </header>
 
-              <section className="w-full space-y-2 flex flex-col items-center">
+              <section className="w-full space-y-6 flex flex-col items-center">
                 {matchedProjects.map((item) => {
                   const isExpanded = expandedProjectIds.has(item.id);
                   const isHovered = hoveredProjectId === item.id;
@@ -1253,15 +1271,16 @@ export default function HomePage() {
                           onClick={() => handleOpenProject(item.id)}
                           onMouseEnter={() => setHoveredProjectId(item.id)}
                           onMouseLeave={() => setHoveredProjectId(null)}
-                          className={`w-full max-w-[320px] sm:max-w-sm mx-auto px-2 py-1 flex flex-col items-center cursor-pointer group space-y-1.5 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
+                          className={`project-card-container w-full max-w-[100vw] sm:max-w-xl mx-auto py-3 flex flex-col items-center cursor-pointer group space-y-2.5 text-center outline-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
                             isHovered 
-                              ? 'scale-[1.08] z-20' 
+                              ? 'scale-[1.02] sm:scale-[1.05] z-20' 
                               : hasHoverActive 
-                                ? 'scale-[0.84] opacity-80' 
+                                ? 'scale-[0.94] opacity-80' 
                                 : 'scale-100 opacity-100'
                           }`}
                         >
-                          <figure className="project-card-thumb relative w-full aspect-[16/10] overflow-hidden bg-neutral-950 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.28)] m-0">
+                          {/* Initial list view: 100% full browser width on mobile matching reference screenshot 1 */}
+                          <figure className="project-card-thumb relative w-full aspect-[16/10] overflow-hidden bg-neutral-950 shadow-[0_12px_40px_-14px_rgba(0,0,0,0.3)] m-0">
                             <img
                               src={heroThumbnail}
                               alt={item.title}
@@ -1271,36 +1290,30 @@ export default function HomePage() {
                             />
                             <span className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
                             {item.status && (
-                              <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/95 font-mono text-[8px] uppercase tracking-[0.18em] font-semibold text-neutral-900 shadow-sm rounded-sm">
+                              <span className="absolute top-3 right-3 px-2.5 py-1 bg-white/95 font-mono text-[9px] uppercase tracking-[0.18em] font-bold text-neutral-900 shadow-sm rounded-sm">
                                 {item.status.replace(/_/g, ' ')}
                               </span>
                             )}
                           </figure>
 
-                          <footer className="space-y-1 px-1 text-center w-full">
-                            <h3 className="text-xs sm:text-sm font-serif font-bold tracking-tight text-neutral-950 group-hover:text-black transition-colors leading-tight">
+                          <footer className="space-y-1 px-3 text-left w-full">
+                            <h3 className="text-base sm:text-lg font-serif font-bold tracking-tight text-neutral-950 group-hover:text-black transition-colors leading-tight">
                               {item.title}
                             </h3>
-                            <p className="text-[8px] font-mono uppercase tracking-[0.2em] text-neutral-400">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 font-semibold">
                               {item.location || 'Addis Ababa'}
                               {item.client && ` • Client: ${item.client}`}
                             </p>
-
-                            {displayDesc && (
-                              <p className="text-[10px] sm:text-[11px] font-serif italic text-neutral-600 line-clamp-2 max-w-xs mx-auto leading-tight mt-1 opacity-90 group-hover:opacity-100 transition-opacity">
-                                &ldquo;{displayDesc}&rdquo;
-                              </p>
-                            )}
                           </footer>
                         </button>
                       ) : (
-                        <section className="menen-luxury-open w-full max-w-[96vw] xl:max-w-[94vw] mx-auto py-2 space-y-3">
-                          <header className="w-full px-2 sm:px-8 flex items-end justify-between gap-4 border-b border-neutral-100 pb-2 text-left">
+                        <section className="menen-luxury-open w-full max-w-[100vw] mx-auto py-2 space-y-4 box-border">
+                          <header className="w-full px-4 sm:px-8 flex items-end justify-between gap-4 border-b border-neutral-200 pb-3 text-left">
                             <hgroup className="min-w-0">
-                              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-400 block mb-0.5">
+                              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-500 font-bold block mb-0.5">
                                 {item.category} • {item.location || 'Ethiopia'}
                               </span>
-                              <h3 className="text-xl sm:text-4xl font-serif font-black tracking-[-0.02em] text-neutral-950 leading-tight truncate">
+                              <h3 className="text-2xl sm:text-4xl font-serif font-black tracking-[-0.02em] text-neutral-950 leading-tight truncate">
                                 {item.title}
                               </h3>
                             </hgroup>
@@ -1309,18 +1322,18 @@ export default function HomePage() {
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'left')}
-                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
+                                className="p-2 sm:p-2.5 border border-neutral-300 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
                                 aria-label="Previous Page"
                               >
-                                <ChevronLeft className="w-4 h-4" />
+                                <ChevronLeft className="w-4 h-4 text-neutral-950" />
                               </button>
                               <button
                                 type="button"
                                 onClick={() => handleScrollSide(item.id, 'right')}
-                                className="p-2 sm:p-2.5 border border-neutral-200 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
+                                className="p-2 sm:p-2.5 border border-neutral-300 bg-white hover:bg-neutral-100 transition-all duration-300 cursor-pointer shadow-sm rounded-xl"
                                 aria-label="Next Page"
                               >
-                                <ChevronRight className="w-4 h-4" />
+                                <ChevronRight className="w-4 h-4 text-neutral-950" />
                               </button>
                               <button
                                 type="button"
@@ -1333,12 +1346,14 @@ export default function HomePage() {
                             </nav>
                           </header>
 
-                          {/* Dynamic Monograph Container: Side-by-side sliding layout matching magazine format on both mobile and PC */}
+                          {/* Expanded Detail View: 
+                              - On MOBILE: Vertical stack layout where each image has its own full-width div, followed separately underneath by its own text div (matching screenshot 2 exactly).
+                              - On DESKTOP: Original side-by-side magazine monograph layout untouched. */}
                           <section
                             ref={(el) => {
                               scrollContainerRefs.current[item.id] = el;
                             }}
-                            className="flex flex-row items-center gap-6 sm:gap-12 overflow-x-auto px-[5px] sm:px-8 py-2 pb-4 scroll-smooth w-full no-scrollbar"
+                            className="flex flex-col sm:flex-row items-center sm:items-stretch gap-8 sm:gap-12 overflow-x-auto sm:overflow-x-auto px-4 sm:px-8 py-3 pb-8 scroll-smooth w-full no-scrollbar box-border"
                           >
                             {plates.map((plate, plateIdx) => {
                               const hasImg = Boolean(plate.image && plate.image.trim() !== '');
@@ -1347,10 +1362,10 @@ export default function HomePage() {
                               return (
                                 <article
                                   key={plateIdx}
-                                  className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left h-full max-h-[85vh]"
+                                  className="shrink-0 flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-10 text-left w-full sm:w-auto h-full max-h-[85vh]"
                                 >
                                   {hasImg && (
-                                    <figure className="monograph-image m-0 shrink-0 h-[42vh] sm:h-[58vh] max-h-[580px] w-[88vw] sm:w-auto aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+                                    <figure className="monograph-image m-0 shrink-0 h-[45vh] sm:h-[62vh] max-h-[620px] w-full sm:w-auto aspect-[16/10] bg-neutral-950 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] overflow-hidden flex items-center">
                                       <img
                                         src={plate.image}
                                         alt={plate.caption || item.title}
@@ -1360,21 +1375,21 @@ export default function HomePage() {
                                   )}
 
                                   {(hasText || plate.caption) && (
-                                    <article className="shrink-0 flex flex-col justify-center space-y-3 w-[88vw] sm:w-[540px] lg:w-[680px]">
+                                    <article className="shrink-0 flex flex-col justify-start space-y-3 w-full sm:w-[540px] lg:w-[680px] sm:h-[62vh] sm:overflow-y-auto sm:pr-2 no-scrollbar pb-4 sm:pb-0">
                                       {plate.caption && (
-                                        <h4 className="text-lg sm:text-2xl font-serif font-black tracking-[-0.015em] text-neutral-950 leading-tight">
+                                        <h4 className="text-base sm:text-2xl font-serif font-black tracking-[-0.015em] text-neutral-950 leading-tight">
                                           {plate.caption}
                                         </h4>
                                       )}
 
                                       {hasText && (
-                                        <p className="text-xs sm:text-base font-serif text-neutral-700 leading-relaxed m-0 text-justify">
+                                        <p className="text-sm sm:text-base font-serif text-neutral-800 leading-relaxed m-0 text-justify">
                                           {plate.narrative}
                                         </p>
                                       )}
 
                                       {item.scopeOfWork && plateIdx === 0 && (
-                                        <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 pt-1">
+                                        <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 pt-1 font-bold">
                                           Commission: {item.scopeOfWork}
                                         </p>
                                       )}
@@ -1384,12 +1399,12 @@ export default function HomePage() {
                               );
                             })}
 
-                            {/* Map & Spatial Coordinates Card sliding horizontally side-by-side */}
-                            <article className="shrink-0 flex flex-row items-center gap-6 sm:gap-10 text-left h-full max-h-[85vh]">
-                              <figure className="m-0 shrink-0 h-[42vh] sm:h-[58vh] max-h-[580px] w-[88vw] sm:w-[580px] aspect-[16/10] flex flex-col space-y-1.5 rounded-2xl overflow-hidden bg-neutral-100 p-2 shadow-sm">
+                            {/* Map & Spatial Coordinates Card (Desktop Only, entirely eliminated on mobile viewports) */}
+                            <article className="mobile-map-card shrink-0 hidden sm:flex flex-row items-stretch gap-6 sm:gap-10 text-left h-full max-h-[85vh]">
+                              <figure className="m-0 shrink-0 h-[62vh] max-h-[620px] w-[580px] aspect-[16/10] flex flex-col space-y-1.5 rounded-2xl overflow-hidden bg-neutral-100 p-2 shadow-sm">
                                 <figcaption className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-neutral-500 px-1">
-                                  <span className="flex items-center gap-1.5 text-neutral-900 font-bold">
-                                    <MapPin className="w-3.5 h-3.5" /> Spatial Coordinates
+                                  <span className="flex items-center gap-1.5 text-neutral-950 font-bold">
+                                    <MapPin className="w-3.5 h-3.5 text-neutral-900" /> Spatial Coordinates
                                   </span>
                                   <span>{item.mapCoordinates || item.location || 'Addis Ababa, Ethiopia'}</span>
                                 </figcaption>
@@ -1408,8 +1423,8 @@ export default function HomePage() {
                               </figure>
 
                               {/* Leadership & Monograph Details */}
-                              <article className="w-[85vw] sm:w-[400px] shrink-0 space-y-4">
-                                <h4 className="font-mono text-xs uppercase tracking-[0.25em] font-bold text-neutral-950 pb-1.5 border-b border-neutral-100">
+                              <article className="w-[400px] shrink-0 space-y-4 h-[62vh] overflow-y-auto pr-2 no-scrollbar">
+                                <h4 className="font-mono text-xs uppercase tracking-[0.25em] font-bold text-neutral-950 pb-1.5 border-b border-neutral-200">
                                   Project Leadership &amp; Credits
                                 </h4>
                                 
@@ -1420,8 +1435,8 @@ export default function HomePage() {
                                     ['Project Manager', item.projectManager || 'Arch. Ephrem'],
                                     ['Project Team', item.projectTeam || 'MENEN Studio'],
                                   ].map(([label, value]) => (
-                                    <section key={label} className="border-b border-neutral-100 pb-1.5">
-                                      <dt className="text-[9px] uppercase tracking-[0.2em] text-neutral-400">
+                                    <section key={label} className="border-b border-neutral-200 pb-1.5">
+                                      <dt className="text-[9px] uppercase tracking-[0.2em] text-neutral-500 font-bold">
                                         {label}
                                       </dt>
                                       <dd className="text-xs font-bold text-neutral-950 font-serif m-0 mt-0.5">
@@ -1434,7 +1449,7 @@ export default function HomePage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCloseProject(item.id)}
-                                  className="w-full py-2.5 bg-neutral-950 text-white hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md rounded-xl"
+                                  className="w-full py-3 bg-neutral-950 text-white hover:bg-neutral-800 transition-colors font-mono text-xs uppercase tracking-[0.2em] cursor-pointer shadow-md rounded-xl font-bold"
                                 >
                                   Close Monograph &uarr;
                                 </button>
